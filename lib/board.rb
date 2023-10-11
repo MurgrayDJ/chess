@@ -43,8 +43,31 @@ class Board
   end
 
   def print_board
-    @board.each do |row| 
-      p row
+    # top_line = " " + ("_" * 39) + "\n"
+    # bottom_line = (" \u0305" * 39) + "\n"
+    top_line = " ___    ________________________________    ___ \n"
+    bottom_line = " ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅     ̅ ̅ ̅  \n"
+    print top_line 
+    print_rows(top_line, bottom_line)
+    print bottom_line
+  end
+
+  def print_rows(top_line, bottom_line)
+    @board.each_with_index do |row, row_num|
+      if row_num == 9 then print top_line end
+      if row_num == 1 then print top_line end
+      row.each_with_index do |val, col_num|
+        if col_num != 1 && col_num != 9
+          print "| #{val} "
+        elsif col_num == 1
+          print "|  | #{val}  "
+        elsif col_num == 9
+          print "|  | #{val} "
+        end
+      end
+      print "| \n"
+      if row_num == 0 then print bottom_line end
+      if row_num == 8 then print bottom_line end
     end
   end
 end
