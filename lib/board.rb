@@ -10,11 +10,23 @@ class Board
 
   def board_setup 
     new_board = Array.new(ROWS){Array.new(COLUMNS){"\u2237"}}
+    add_files(new_board)
+    add_ranks(new_board)
+    new_board
+  end
+
+  def add_files(new_board)
     files = [" ", "a", "b", "c", "d", "e", "f", "g", "h", " "]
-    ranks = [" ", 8, 7, 6, 5, 4, 3, 2, 1, " "]
     new_board[0] = files.map(&:clone)
     new_board[9] = files.map(&:clone)
-    new_board
+  end
+
+  def add_ranks(new_board)
+    ranks = [" ", 8, 7, 6, 5, 4, 3, 2, 1, " "]
+    ranks.each_with_index do |rank, idx|
+      new_board[idx][0] = rank
+      new_board[idx][9] = rank
+    end
   end
 
   def print_board
