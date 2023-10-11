@@ -12,6 +12,7 @@ class Board
     new_board = Array.new(ROWS){Array.new(COLUMNS){"\u2237"}}
     add_files(new_board)
     add_ranks(new_board)
+    add_spaces(new_board)
     new_board
   end
 
@@ -26,6 +27,18 @@ class Board
     ranks.each_with_index do |rank, idx|
       new_board[idx][0] = rank
       new_board[idx][9] = rank
+    end
+  end
+
+  def add_spaces(new_board)
+    (8).downto(1) do |row|
+      (8).downto(1) do |col|
+        if col.odd? && row.even?
+          new_board[row][col] = " "
+        elsif col.even? && row.odd?
+          new_board[row][col] = " "
+        end
+      end
     end
   end
 
