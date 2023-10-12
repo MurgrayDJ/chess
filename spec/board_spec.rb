@@ -27,14 +27,44 @@ RSpec.describe Board do
   end
 
   describe "#update_old_spot" do
+    let(:sym) {"\u265a"}
     context "there's a king symbol on g3 [6,7]" do
       it "should remove the symbol and put a space there" do
-        sym = "\u265a"
         @board_class.board[6][7] = sym
         @board_class.print_board
         @board_class.update_old_spot(6,7)
         @board_class.print_board
         expect(@board_class.board[6][7]).to eq(" ")
+      end
+    end
+
+    context "there's a king symbol on b1 [8,2]" do
+      it "should remove the symbol and put dots there" do
+        @board_class.board[8][2] = sym
+        @board_class.print_board
+        @board_class.update_old_spot(8,2)
+        @board_class.print_board
+        expect(@board_class.board[8][2]).to eq(DOTS)
+      end
+    end
+
+    context "there's a king symbol on e4 [5,5]" do
+      it "should remove the symbol and put dots there" do
+        @board_class.board[5][5] = sym
+        @board_class.print_board
+        @board_class.update_old_spot(5,5)
+        @board_class.print_board
+        expect(@board_class.board[5][5]).to eq(DOTS)
+      end
+    end
+
+    context "there's a king symbol on b6 [3,2]" do
+      it "should remove the symbol and put a space there" do
+        @board_class.board[3][2] = sym
+        @board_class.print_board
+        @board_class.update_old_spot(3,2)
+        @board_class.print_board
+        expect(@board_class.board[3][2]).to eq(" ")
       end
     end
   end
