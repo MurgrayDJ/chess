@@ -1,3 +1,4 @@
+require_relative '../lib/pieces/king.rb'
 
 class Board
   attr_accessor :board
@@ -36,6 +37,7 @@ class Board
       if row_num == 9 then print top_line end
       if row_num == 1 then print top_line end
       row.each_with_index do |val, col_num|
+        if !val.instance_of?(String) && !val.instance_of?(Integer) then val = val.symbol end
         if col_num != 1 && col_num != 9
           print "| #{val} "
         elsif col_num == 1
@@ -50,7 +52,12 @@ class Board
     end
   end
 
-    # def board_setup 
+  def move_piece(curr_pos, next_pos)
+    @board[next_pos[0]][next_pos[1]] = @board[curr_pos[0]][curr_pos[1]]
+  end
+  
+  ### OLD BOARD SETUP METHODS
+  # def board_setup 
   #   new_board = Array.new(ROWS){Array.new(COLUMNS){"\u2237"}}
   #   add_files(new_board)
   #   add_ranks(new_board)
