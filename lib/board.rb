@@ -54,8 +54,17 @@ class Board
 
   def move_piece(curr_pos, next_pos)
     @board[next_pos[0]][next_pos[1]] = @board[curr_pos[0]][curr_pos[1]]
+    update_old_spot(curr_pos[0], curr_pos[1])
   end
   
+  def update_old_spot(row, col)
+    sum = row + col
+    if sum.odd?
+      @board[row][col] = " "
+    elsif sum.even?
+      @board[row][col] = DOTS
+    end
+  end
   ### OLD BOARD SETUP METHODS
   # def board_setup 
   #   new_board = Array.new(ROWS){Array.new(COLUMNS){"\u2237"}}
