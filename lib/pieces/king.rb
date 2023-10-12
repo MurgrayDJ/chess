@@ -13,6 +13,7 @@ class King
   def initialize(type, start_pos)
     @type = type
     @start_pos = start_pos
+    @current_pos = start_pos
     set_symbol
   end
 
@@ -22,5 +23,10 @@ class King
     else
       @symbol = "\u2654"
     end
+  end
+
+  def get_moves
+    possible_moves = MOVES.map {|move| [current_pos[0] + move[0], current_pos[1] + move[1]]}
+                      .select {|move| move[0].between?(1,8) && move[1].between?(1,8)}
   end
 end
