@@ -67,12 +67,12 @@ class Board
   end
 
   def check_surroundings(piece, move_list)
-    move_list.each do |spot|
+    move_list.delete_if do |spot|
       spot_val = @board[spot[0]][spot[1]]
       if spot_val.instance_of?(String)
         next
       elsif spot_val.type == piece.type
-        move_list.delete(spot)
+        true
       end
     end
     move_list
