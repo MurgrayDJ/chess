@@ -65,6 +65,18 @@ class Board
       @board[row][col] = DOTS
     end
   end
+
+  def check_surroundings(piece, move_list)
+    move_list.each do |spot|
+      spot_val = @board[spot[0]][spot[1]]
+      if spot_val.instance_of?(String)
+        next
+      elsif spot_val.type == piece.type
+        move_list.delete(spot)
+      end
+    end
+    move_list
+  end
   ### OLD BOARD SETUP METHODS
   # def board_setup 
   #   new_board = Array.new(ROWS){Array.new(COLUMNS){"\u2237"}}

@@ -57,4 +57,17 @@ RSpec.describe Board do
       end
     end
   end
+
+  describe "#check_surroundings" do
+    context "king at e8 [1,5], pawn at f7 [2,6]"
+      let(:king) {double(symbol: "\u265a",type: :black)}
+      let(:pawn) {double(symbol: "\u2659",type: :black)}
+      it "should remove [2,6] from the moves list" do
+        @board_class.board[1][5] = king
+        @board_class.board[2][6] = pawn
+        move_list = [2,4],[2,5],[2,6],[1,4],[1,6]
+        @board_class.check_surroundings(king, move_list)
+        expect(move_list).not_to include([2,6])
+      end
+  end
 end
