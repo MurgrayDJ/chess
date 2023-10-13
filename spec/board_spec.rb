@@ -59,15 +59,32 @@ RSpec.describe Board do
   end
 
   describe "#check_surroundings" do
-    context "king at e8 [1,5], pawn at f7 [2,6]"
+    context "king at e8 [1,5], pawn at f7 [2,6]" do
       let(:king) {double(symbol: "\u265a",type: :black)}
       let(:pawn) {double(symbol: "\u2659",type: :black)}
       it "should remove [2,6] from the moves list" do
         @board_class.board[1][5] = king
         @board_class.board[2][6] = pawn
-        move_list = [2,4],[2,5],[2,6],[1,4],[1,6]
+        move_list = [[2,4],[2,5],[2,6],[1,4],[1,6]]
         @board_class.check_surroundings(king, move_list)
         expect(move_list).not_to include([2,6])
       end
+    end
+
+    context "king at a8 [1,1], pawns at a7 [2,1], b7 [2,2], b8 [1,2]" do
+      let(:king) {double(symbol: "\u265a",type: :black)}
+      let(:pawn1) {double(symbol: "\u2659",type: :black)}
+      let(:pawn2) {double(symbol: "\u2659",type: :black)}
+      let(:pawn3) {double(symbol: "\u2659",type: :black)}
+      it "should return an empty list" do
+        @board_class.board[1][1] = king
+        @board_class.board[2][1] = pawn1
+        @board_class.board[2][2] = pawn2
+        @board_class.board[1][2] = pawn3
+        move_list = [[2,1],[2,2],[1,2]]
+        @board_class.check_surroundings(king, move_list)
+        expect(move_list).to be_empty
+      end
+    end
   end
 end
