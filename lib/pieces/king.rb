@@ -1,6 +1,6 @@
-require_relative "pieces.rb"
+require_relative "piece.rb"
 
-class King < Pieces
+class King < Piece
   MOVES = [[1,-1], [1,0], [1,1],[0,-1], 
           [0,1], [-1,-1], [-1,0], [-1,1]].freeze
   

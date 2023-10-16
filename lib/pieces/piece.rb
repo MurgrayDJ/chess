@@ -1,6 +1,6 @@
 
 
-class Pieces
+class Piece
   attr_accessor :symbol
   attr_accessor :type
   attr_accessor :color

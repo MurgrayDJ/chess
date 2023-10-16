@@ -37,7 +37,7 @@ class Board
       if row_num == 9 then print top_line end
       if row_num == 1 then print top_line end
       row.each_with_index do |val, col_num|
-        if val.instance_of?(Pieces) then val = val.symbol end
+        if val.instance_of?(Piece) then val = val.symbol end
         if col_num != 1 && col_num != 9
           print "| #{val} "
         elsif col_num == 1
