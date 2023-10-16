@@ -1,4 +1,4 @@
-require_relative '../lib/pieces/piece.rb'
+require_relative '../lib/piece.rb'
 
 RSpec.describe Piece do
   before {@blk_king = described_class.new(:black, :king, [1,5])}
