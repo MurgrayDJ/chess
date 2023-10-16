@@ -1,7 +1,7 @@
 require_relative '../lib/pieces/king.rb'
 
 RSpec.describe King do
-  before {@blk_king = described_class.new(:black, [1,5])}
+  before {@blk_king = described_class.new(:black, :king, [1,5])}
 
   describe "#get_moves" do
     context "he is in starting position with no other pieces" do

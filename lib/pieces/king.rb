@@ -4,7 +4,7 @@ class King < Pieces
   MOVES = [[1,-1], [1,0], [1,1],[0,-1], 
           [0,1], [-1,-1], [-1,0], [-1,1]].freeze
   
-  def initialize(type, start_pos)
+  def initialize(color, type, start_pos)
     super
   end
 

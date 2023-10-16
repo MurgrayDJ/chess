@@ -3,11 +3,13 @@
 class Pieces
   attr_accessor :symbol
   attr_accessor :type
+  attr_accessor :color
   attr_accessor :name
   attr_accessor :start_pos
   attr_accessor :current_pos
 
-  def initialize(type, start_pos)
+  def initialize(color, type, start_pos)
+    @color = color
     @type = type
     @start_pos = start_pos
     @current_pos = start_pos
