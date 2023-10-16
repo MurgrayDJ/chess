@@ -1,4 +1,3 @@
-require_relative '../lib/pieces/king.rb'
 
 class Board
   attr_accessor :board
