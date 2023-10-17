@@ -12,7 +12,7 @@ class Piece
           [0,1], [-1,-1], [-1,0], [-1,1]],
     knight: [[-1,-2], [-1,2], [1,-2], [1,2], 
           [-2,-1], [-2,1], [2,-1], [2,1]]
-}
+  }.freeze
 
   def initialize(color, type, start_pos)
     @color = color
