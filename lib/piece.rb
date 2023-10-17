@@ -9,8 +9,10 @@ class Piece
   attr_accessor :current_pos
   MOVES = {
     king: [[1,-1], [1,0], [1,1],[0,-1], 
-    [0,1], [-1,-1], [-1,0], [-1,1]]
-  }
+          [0,1], [-1,-1], [-1,0], [-1,1]],
+    knight: [[-1,-2], [-1,2], [1,-2], [1,2], 
+          [-2,-1], [-2,1], [2,-1], [2,1]]
+}
 
   def initialize(color, type, start_pos)
     @color = color
