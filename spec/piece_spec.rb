@@ -5,7 +5,9 @@ RSpec.describe Piece do
   describe "#get_moves" do
     before {@blk_king = described_class.new(:black, :king, [1,5])}
     before {@w_knight = described_class.new(:white, :knight, [9,2])}
+    before {@w_pawn = described_class.new(:white, :pawn, [7,6])}
 
+    #King
     context "king is in starting position with no other pieces" do
       it "should return a list of the 5 next possible next moves" do
         expect(@blk_king.get_moves).to match_array([[2,4],[2,5],[2,6],[1,4],[1,6]])
@@ -19,9 +21,17 @@ RSpec.describe Piece do
       end
     end
 
+    #Knight
     context "b1 [9,2] knight is in starting position with no other pieces" do
       it "should return a list with only 3 moves" do
         expect(@w_knight.get_moves).to match_array([[7,1],[7,3],[8,4]])
+      end
+    end
+
+    #Pawn
+    context "f2 [7,6] pawn is in starting position with no piece in front" do
+      it "should return a list with 1 move" do
+        expect(@w_pawn.get_moves).to match_array([[8,6]])
       end
     end
   end
