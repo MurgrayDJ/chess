@@ -1,2 +1,2 @@
 # chess
-Purpose is to simulate a chess game
+Purpose is to create a console chess game using Ruby.
