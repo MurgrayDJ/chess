@@ -1,4 +1,4 @@
-require_relative '../lib/pieces/pawn.rb'
+require_relative '../../lib/pieces/pawn.rb'
 
 RSpec.describe Pawn do
 

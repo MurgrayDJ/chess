@@ -1,4 +1,4 @@
-require_relative '../lib/pieces/king.rb'
+require_relative '../../lib/pieces/king.rb'
 
 RSpec.describe King do
 
