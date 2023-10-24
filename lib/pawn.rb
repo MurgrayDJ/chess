@@ -1,4 +1,0 @@
-
-class Pawn do
-
-end
