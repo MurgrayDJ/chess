@@ -7,13 +7,6 @@ class Piece
   attr_accessor :name
   attr_accessor :start_pos
   attr_accessor :current_pos
-  MOVES = {
-    king: [[1,-1], [1,0], [1,1],[0,-1], 
-          [0,1], [-1,-1], [-1,0], [-1,1]],
-    knight: [[-1,-2], [-1,2], [1,-2], [1,2], 
-          [-2,-1], [-2,1], [2,-1], [2,1]],
-    pawn: [[1,0]]
-  }.freeze
 
   def initialize(color, start_pos, type)
     @color = color
@@ -32,7 +25,6 @@ class Piece
   end
 
   def get_moves(moves)
-    # move_list = MOVES[@type]
     possible_moves = moves.map {|move| [current_pos[0] + move[0], current_pos[1] + move[1]]}
                       .select {|move| move[0].between?(1,8) && move[1].between?(1,8)}
   end
