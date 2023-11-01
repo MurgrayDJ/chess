@@ -23,6 +23,6 @@ class Queen < Piece
   end
 
   def get_moves
-    super(MOVES)
+    super(@moves)
   end
 end
