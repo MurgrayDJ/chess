@@ -24,8 +24,26 @@ class Piece
     end
   end
 
+  # def deep_copy(o)
+  #   Marshal.load(Marshal.dump(o))
+  # end
+
+  def generate_moves(moves)
+    moves.map {|move| [current_pos[0] + move[0], current_pos[1] + move[1]]}
+                        .select {|move| move[0].between?(1,8) && move[1].between?(1,8)}
+  end
+
   def get_moves(moves)
-    possible_moves = moves.map {|move| [current_pos[0] + move[0], current_pos[1] + move[1]]}
-                      .select {|move| move[0].between?(1,8) && move[1].between?(1,8)}
+    possible_moves = ''
+    if moves.is_a?(Array)
+      possible_moves = []
+      possible_moves = generate_moves(moves)
+    else
+      possible_moves = {}
+      moves.each do |direction, move_list|
+        possible_moves[direction] = generate_moves(move_list)
+      end
+    end
+    possible_moves
   end
 end
