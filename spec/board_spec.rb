@@ -124,5 +124,29 @@ RSpec.describe Board do
         expect(move_list.values.reduce([], :concat)).to match_array([[7,1],[6,1],[5,1],[4,1],[3,1],[2,1],[1,1]])
       end
     end
+
+    context "b_bishop at d4 [5,4], w_pawn at f6 [3,6]" do
+      before {@b_bishop = Bishop.new(:black, [5,4])}
+      before {@w_pawn = Pawn.new(:white, [3,6])}
+      it "should return a list with 11 moves" do
+        @board_class.board[5][4] = @b_bishop
+        @board_class.board[3][6] = @w_pawn
+        move_list = @b_bishop.get_moves
+        @board_class.check_surroundings(@b_bishop, move_list)
+        expect(move_list.values.reduce([], :concat).length).to eq(11)
+      end
+    end
+
+    context "b_knight at d5 [4,4], b_rook at c3 [6,3]" do
+      before {@b_knight = Knight.new(:black, [4,4])}
+      before {@b_rook = Rook.new(:black, [6,3])}
+      it "should return a list with 7 moves" do
+        @board_class.board[5][4] = @b_knight
+        @board_class.board[6][3] = @b_rook
+        move_list = @b_knight.get_moves
+        @board_class.check_surroundings(@b_knight, move_list)
+        expect(move_list.length).to eq(7)
+      end
+    end
   end
 end
