@@ -100,5 +100,18 @@ RSpec.describe Board do
         expect(move_list.values.reduce([], :concat)).not_to include([2,5],[3,6],[4,7],[5,8])
       end
     end
+
+    context "b queen at d8 [1,4], w pawn at d7 [2,4]" do
+      before {@b_queen = Queen.new(:black, [1,4])}
+      before {@w_pawn = Pawn.new(:white, [2,5])}
+      it "should return a list with only one south item" do
+        @board_class.board[1][4] = @b_queen
+        @board_class.board[2][4] = @w_pawn
+        move_list = @b_queen.get_moves
+        @board_class.check_surroundings(@b_queen, move_list)
+        expect(move_list.values.reduce([], :concat)).to not_include([4,4],[5,4],[6,4],[7,4],[8,4])
+        .and include([2,5])
+      end
+    end
   end
 end
