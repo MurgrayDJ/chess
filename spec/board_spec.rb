@@ -1,6 +1,5 @@
 require_relative '../lib/board.rb'
-require_relative '../lib/pieces/queen.rb'
-require_relative '../lib/pieces/pawn.rb'
+Dir[File.join(__dir__, '../lib/pieces', '*.rb')].each { |file| require file }
 
 RSpec.describe Board do
   before { @board_class = described_class.new }
@@ -111,6 +110,18 @@ RSpec.describe Board do
         @board_class.check_surroundings(@b_queen, move_list)
         expect(move_list.values.reduce([], :concat)).to not_include([4,4],[5,4],[6,4],[7,4],[8,4])
         .and include([2,5])
+      end
+    end
+
+    context "w_rook at a1 [8,1], w_knight at b1 [8,2]" do
+      before {@w_rook = Rook.new(:white, [8,1])}
+      before {@w_knight = Knight.new(:white, [8,2])}
+      it "should return a list with only the northern moves" do
+        @board_class.board[8][1] = @w_rook
+        @board_class.board[8][2] = @w_knight
+        move_list = @w_rook.get_moves
+        @board_class.check_surroundings(@w_rook, move_list)
+        expect(move_list.values.reduce([], :concat)).to match_array([[7,1],[6,1],[5,1],[4,1],[3,1],[2,1],[1,1]])
       end
     end
   end
