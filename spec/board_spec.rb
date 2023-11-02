@@ -1,4 +1,6 @@
 require_relative '../lib/board.rb'
+require_relative '../lib/pieces/queen.rb'
+require_relative '../lib/pieces/pawn.rb'
 
 RSpec.describe Board do
   before { @board_class = described_class.new }
@@ -60,8 +62,8 @@ RSpec.describe Board do
 
   describe "#check_surroundings" do
     context "king at e8 [1,5], pawn at f7 [2,6]" do
-      let(:king) {double(symbol: "\u265a",type: :black)}
-      let(:pawn) {double(symbol: "\u2659",type: :black)}
+      let(:king) {double(symbol: "\u265a",color: :black)}
+      let(:pawn) {double(symbol: "\u2659",color: :black)}
       it "should remove [2,6] from the moves list" do
         @board_class.board[1][5] = king
         @board_class.board[2][6] = pawn
@@ -72,10 +74,10 @@ RSpec.describe Board do
     end
 
     context "king at a8 [1,1], pawns at a7 [2,1], b7 [2,2], b8 [1,2]" do
-      let(:king) {double(symbol: "\u265a",type: :black)}
-      let(:pawn1) {double(symbol: "\u2659",type: :black)}
-      let(:pawn2) {double(symbol: "\u2659",type: :black)}
-      let(:pawn3) {double(symbol: "\u2659",type: :black)}
+      let(:king) {double(symbol: "\u265a",color: :black)}
+      let(:pawn1) {double(symbol: "\u2659",color: :black)}
+      let(:pawn2) {double(symbol: "\u2659",color: :black)}
+      let(:pawn3) {double(symbol: "\u2659",color: :black)}
       it "should return an empty list" do
         @board_class.board[1][1] = king
         @board_class.board[2][1] = pawn1
@@ -84,6 +86,18 @@ RSpec.describe Board do
         move_list = [[2,1],[2,2],[1,2]]
         @board_class.check_surroundings(king, move_list)
         expect(move_list).to be_empty
+      end
+    end
+
+    context "queen at d8 [1,4], pawn at e7 [2,5]" do
+      before {@b_queen = Queen.new(:black, [1,4])}
+      before {@b_pawn = Pawn.new(:black, [2,5])}
+      it "should return a list without the southeast list" do
+        @board_class.board[1][4] = @b_queen
+        @board_class.board[2][5] = @b_pawn
+        move_list = @b_queen.get_moves
+        @board_class.check_surroundings(@b_queen, move_list)
+        expect(move_list.values.reduce([], :concat)).not_to include([2,5],[3,6],[4,7],[5,8])
       end
     end
   end

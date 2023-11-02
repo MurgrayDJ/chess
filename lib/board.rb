@@ -66,16 +66,41 @@ class Board
     end
   end
 
-  def check_surroundings(piece, move_list)
+  def delete_move(piece, move_list)
     move_list.delete_if do |spot|
       spot_val = @board[spot[0]][spot[1]]
       if spot_val.instance_of?(String)
         next
-      elsif spot_val.type == piece.type
+      elsif spot_val.color == piece.color
         true
       end
     end
     move_list
+  end
+
+  def delete_moves(piece, moves)
+    moves.values.each do |move_list|
+      move_list.each_with_index do |move, idx|
+        spot_val = @board[move[0]][move[1]]
+        if spot_val.instance_of?(String)
+          next
+        elsif spot_val.color == piece.color
+          indices_to_remove = (idx..move_list.length-1)
+          move_list.delete_if.with_index{|_, i| indices_to_remove.include?(i)}
+        elsif spot_val.color != piece.color
+          indices_to_remove = (idx+1..move_list.length-1)
+          move_list.delete_if.with_index{|_, i| indices_to_remove.include?(i)}
+        end
+      end
+    end
+  end
+
+  def check_surroundings(piece, moves)
+    if moves.is_a?(Array)
+      delete_move(piece, moves)
+    else
+      delete_moves(piece, moves)
+    end
   end
   ### OLD BOARD SETUP METHODS
   # def board_setup 
