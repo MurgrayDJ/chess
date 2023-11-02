@@ -1,3 +1,4 @@
+require_relative './piece.rb'
 
 class Board
   attr_accessor :board
