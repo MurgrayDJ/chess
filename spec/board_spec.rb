@@ -14,7 +14,7 @@ RSpec.describe Board do
   end
 
   describe "#move_piece" do
-    context "king is moving from e8 [1,5] to f7 [2,6]" do
+    context "b_king is moving from e8 [1,5] to f7 [2,6]" do
       before {@b_king = King.new(:black, [1,5])}
       it "should have the king in f7 [2,6]" do
         @board_class.board[1][5] = @b_king
@@ -31,7 +31,29 @@ RSpec.describe Board do
       it "should set the has_moved flag to true" do
         @board_class.board[1][5] = @b_king
         @board_class.move_piece([1,5], [2,6])
-        expect(@b_king.has_moved).to eq(true)
+        expect(@b_king.has_moved).to be true
+      end
+    end
+
+    context "b_pawn moves from h7 [2,8] to h6 [3,8]" do
+      before {@b_pawn = Pawn.new(:black, [2,8])}
+
+      it "should have the pawn in h6 [3,8]" do
+        @board_class.board[2][8] = @b_pawn
+        @board_class.move_piece([2,8], [3,8])
+        expect(@board_class.board[3][8]).to eq(@b_pawn)
+      end
+
+      it "should update the pawn's current position to [3,8]" do
+        @board_class.board[2][8] = @b_pawn
+        @board_class.move_piece([2,8], [3,8])
+        expect(@b_pawn.current_pos).to eq([3,8])
+      end
+
+      it "should set the has_moved flag to true" do
+        @board_class.board[2][8] = @b_pawn
+        @board_class.move_piece([2,8], [3,8])
+        expect(@b_pawn.has_moved).to be true
       end
     end
   end
@@ -100,7 +122,7 @@ RSpec.describe Board do
       end
     end
 
-    context "queen at d8 [1,4], pawn at e7 [2,5]" do
+    context "b_queen at d8 [1,4], pawn at e7 [2,5]" do
       before {@b_queen = Queen.new(:black, [1,4])}
       before {@b_pawn = Pawn.new(:black, [2,5])}
       it "should return a list without the southeast list" do
@@ -112,7 +134,7 @@ RSpec.describe Board do
       end
     end
 
-    context "b queen at d8 [1,4], w pawn at d7 [2,4]" do
+    context "b_queen at d8 [1,4], w pawn at d7 [2,4]" do
       before {@b_queen = Queen.new(:black, [1,4])}
       before {@w_pawn = Pawn.new(:white, [2,5])}
       it "should return a list with only one south item" do
