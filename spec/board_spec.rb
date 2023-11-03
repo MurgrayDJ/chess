@@ -21,6 +21,12 @@ RSpec.describe Board do
         @board_class.move_piece([1,5], [2,6])
         expect(@board_class.board[2][6]).to eq(@b_king)
       end
+
+      it "should update the king's current position to [2,6]" do
+        @board_class.board[1][5] = @b_king
+        @board_class.move_piece([1,5], [2,6])
+        expect(@b_king.current_pos).to eq([2,6])
+      end
     end
   end
 
