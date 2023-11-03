@@ -8,7 +8,7 @@ RSpec.describe Pawn do
     #Pawn
     context "f2 [7,6] pawn is in starting position with no piece in front" do
       it "should return a list with 1 move" do
-        expect(@w_pawn.get_moves).to match_array([[8,6]])
+        expect(@w_pawn.get_moves.values.reduce([], :concat)).to match_array([[8,6]])
       end
     end
   end
