@@ -27,6 +27,12 @@ RSpec.describe Board do
         @board_class.move_piece([1,5], [2,6])
         expect(@b_king.current_pos).to eq([2,6])
       end
+
+      it "should set the has_moved flag to true" do
+        @board_class.board[1][5] = @b_king
+        @board_class.move_piece([1,5], [2,6])
+        expect(@b_king.has_moved).to eq(true)
+      end
     end
   end
 
