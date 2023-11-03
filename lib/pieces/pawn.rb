@@ -16,6 +16,7 @@ class Pawn < Piece
   end
 
   def get_moves
+    if @has_moved then @moves.delete(:two_squares) end
     super(@moves)
   end
 end
