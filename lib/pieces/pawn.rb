@@ -14,6 +14,12 @@ class Pawn < Piece
     super
   end
 
+  def update_piece(next_pos)
+    super
+    @has_moved = true
+    @moves.delete(:two_squares)
+  end
+
   def set_color(color)
     if color == :black
       @moves = {one_square: [[1,0]],
@@ -25,7 +31,6 @@ class Pawn < Piece
   end
 
   def get_moves
-    if @has_moved then @moves.delete(:two_squares) end
     super(@moves)
   end
 end

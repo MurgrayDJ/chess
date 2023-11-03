@@ -55,15 +55,8 @@ class Board
   def move_piece(curr_pos, next_pos)
     curr_piece = @board[curr_pos[0]][curr_pos[1]]
     @board[next_pos[0]][next_pos[1]] = curr_piece
-    update_piece(curr_piece, next_pos)
+    curr_piece.update_piece(next_pos)
     update_old_spot(curr_pos[0], curr_pos[1])
-  end
-
-  def update_piece(curr_piece, next_pos)
-    curr_piece.current_pos = next_pos
-    if curr_piece.respond_to?(:has_moved)
-      curr_piece.has_moved = true
-    end
   end
   
   def update_old_spot(row, col)

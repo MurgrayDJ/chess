@@ -13,51 +13,6 @@ RSpec.describe Board do
     end
   end
 
-  describe "#move_piece" do
-    context "b_king is moving from e8 [1,5] to f7 [2,6]" do
-      before {@b_king = King.new(:black, [1,5])}
-      it "should have the king in f7 [2,6]" do
-        @board_class.board[1][5] = @b_king
-        @board_class.move_piece([1,5], [2,6])
-        expect(@board_class.board[2][6]).to eq(@b_king)
-      end
-
-      it "should update the king's current position to [2,6]" do
-        @board_class.board[1][5] = @b_king
-        @board_class.move_piece([1,5], [2,6])
-        expect(@b_king.current_pos).to eq([2,6])
-      end
-
-      it "should set the has_moved flag to true" do
-        @board_class.board[1][5] = @b_king
-        @board_class.move_piece([1,5], [2,6])
-        expect(@b_king.has_moved).to be true
-      end
-    end
-
-    context "b_pawn moves from h7 [2,8] to h6 [3,8]" do
-      before {@b_pawn = Pawn.new(:black, [2,8])}
-
-      it "should have the pawn in h6 [3,8]" do
-        @board_class.board[2][8] = @b_pawn
-        @board_class.move_piece([2,8], [3,8])
-        expect(@board_class.board[3][8]).to eq(@b_pawn)
-      end
-
-      it "should update the pawn's current position to [3,8]" do
-        @board_class.board[2][8] = @b_pawn
-        @board_class.move_piece([2,8], [3,8])
-        expect(@b_pawn.current_pos).to eq([3,8])
-      end
-
-      it "should set the has_moved flag to true" do
-        @board_class.board[2][8] = @b_pawn
-        @board_class.move_piece([2,8], [3,8])
-        expect(@b_pawn.has_moved).to be true
-      end
-    end
-  end
-
   describe "#update_old_spot" do
     let(:sym) {"\u265a"}
     context "there's a king symbol on g3 [6,7]" do
@@ -180,6 +135,57 @@ RSpec.describe Board do
         move_list = @b_knight.get_moves
         @board_class.check_surroundings(@b_knight, move_list)
         expect(move_list.length).to eq(7)
+      end
+    end
+  end
+
+  describe "#move_piece" do
+    context "b_king is moving from e8 [1,5] to f7 [2,6]" do
+      before {@b_king = King.new(:black, [1,5])}
+      it "should have the king in f7 [2,6]" do
+        @board_class.board[1][5] = @b_king
+        @board_class.move_piece([1,5], [2,6])
+        expect(@board_class.board[2][6]).to eq(@b_king)
+      end
+
+      it "should update the king's current position to [2,6]" do
+        @board_class.board[1][5] = @b_king
+        @board_class.move_piece([1,5], [2,6])
+        expect(@b_king.current_pos).to eq([2,6])
+      end
+
+      it "should set the has_moved flag to true" do
+        @board_class.board[1][5] = @b_king
+        @board_class.move_piece([1,5], [2,6])
+        expect(@b_king.has_moved).to be true
+      end
+    end
+
+    context "b_pawn moves from h7 [2,8] to h6 [3,8]" do
+      before {@b_pawn = Pawn.new(:black, [2,8])}
+
+      it "should have the pawn in h6 [3,8]" do
+        @board_class.board[2][8] = @b_pawn
+        @board_class.move_piece([2,8], [3,8])
+        expect(@board_class.board[3][8]).to eq(@b_pawn)
+      end
+
+      it "should update the pawn's current position to [3,8]" do
+        @board_class.board[2][8] = @b_pawn
+        @board_class.move_piece([2,8], [3,8])
+        expect(@b_pawn.current_pos).to eq([3,8])
+      end
+
+      it "should set the has_moved flag to true" do
+        @board_class.board[2][8] = @b_pawn
+        @board_class.move_piece([2,8], [3,8])
+        expect(@b_pawn.has_moved).to be true
+      end
+
+      it "should remove the 2 step move from the move hash" do
+        @board_class.board[2][8] = @b_pawn
+        @board_class.move_piece([2,8], [3,8])
+        expect(@b_pawn.moves.key?(:two_squares)).to be false
       end
     end
   end

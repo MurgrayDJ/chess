@@ -13,6 +13,11 @@ class King < Piece
     super
   end
 
+  def update_piece(next_pos)
+    super
+    @has_moved = true
+  end
+
   def get_moves
     super(MOVES)
   end

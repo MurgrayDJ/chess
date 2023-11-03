@@ -12,6 +12,10 @@ class Knight < Piece
     super
   end
 
+  def update_piece(next_pos)
+    super
+  end
+
   def get_moves
     super(MOVES)
   end

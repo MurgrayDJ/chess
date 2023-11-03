@@ -24,9 +24,9 @@ class Piece
     end
   end
 
-  # def deep_copy(o)
-  #   Marshal.load(Marshal.dump(o))
-  # end
+  def update_piece(next_pos)
+    @current_pos = next_pos
+  end
 
   def generate_moves(moves)
     moves.map {|move| [current_pos[0] + move[0], current_pos[1] + move[1]]}
