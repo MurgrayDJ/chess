@@ -2,11 +2,13 @@ require_relative '../piece.rb'
 
 class Pawn < Piece
   attr_accessor :has_moved
-  MOVES = [[1,0]]
+  attr_accessor :moves
 
   def initialize(color, start_pos)
     super(color, start_pos, :pawn)
     @has_moved = false
+    @moves = {one_square: [1,0],
+              two_squares: [2,0]}
   end
 
   def set_symbol
@@ -14,6 +16,6 @@ class Pawn < Piece
   end
 
   def get_moves
-    super(MOVES)
+    super(@moves)
   end
 end
