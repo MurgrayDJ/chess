@@ -15,11 +15,11 @@ RSpec.describe Board do
 
   describe "#move_piece" do
     context "king is moving from e8 [1,5] to f7 [2,6]" do
-      let(:king) {double(symbol: "\u265a", current_pos: [1,5])}
+      before {@b_king = King.new(:black, [1,5])}
       it "should have the king in f7 [2,6]" do
-        @board_class.board[1][5] = king
+        @board_class.board[1][5] = @b_king
         @board_class.move_piece([1,5], [2,6])
-        expect(@board_class.board[2][6]).to eq(king)
+        expect(@board_class.board[2][6]).to eq(@b_king)
       end
     end
   end
