@@ -188,5 +188,15 @@ RSpec.describe Board do
         expect(@b_pawn.moves.key?(:two_squares)).to be false
       end
     end
+
+    context "w_pawn g2 [7,7] moves 2 spaces" do
+      before {@w_pawn = Pawn.new(:white, [7,7])}
+      it "should move to g4 [5,7]" do
+        @board_class.board[7][7] = @w_pawn
+        next_move = @w_pawn.get_moves()[:two_squares][0]
+        @board_class.move_piece([7,7], next_move)
+        expect(@board_class.board[5][7]).to eq(@w_pawn)
+      end
+    end
   end
 end
