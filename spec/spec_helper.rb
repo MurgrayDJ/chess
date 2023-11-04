@@ -16,6 +16,22 @@
 RSpec.configure do |config|
   RSpec::Matchers.define_negated_matcher :not_include, :include
   RSpec::Matchers.define_negated_matcher :not_eq, :eq
+  
+  ## Sends console writes to external file
+  original_stderr = $stderr
+  original_stdout = $stdout
+  error_path = File.join(File.dirname(__FILE__), 'txt_files/error_output.txt')
+  output_path = File.join(File.dirname(__FILE__), 'txt_files/console_output.txt')
+  config.before(:all) do
+    # Redirect stderr and stdout
+    $stderr = File.open(error_path, "w") 
+    $stdout = File.open(output_path, "w") 
+  end
+  config.after(:all) do
+    $stderr = original_stderr
+    $stdout = original_stdout
+  end
+  
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
