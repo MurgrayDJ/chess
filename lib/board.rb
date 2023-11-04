@@ -59,6 +59,12 @@ class Board
     [x,y]
   end
 
+  def xy_to_square(coord)
+    rank = RANKS.find_index(coord[0])
+    file = (coord[1] + 64).chr.downcase
+    "#{file}#{rank}"
+  end
+
   def move_piece(square1, square2)
     curr_pos = square_to_xy(square1[0], square1[1].to_i)
     next_pos = square_to_xy(square2[0], square2[1].to_i)
