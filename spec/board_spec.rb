@@ -199,4 +199,30 @@ RSpec.describe Board do
       end
     end
   end
+
+  describe "#square_to_xy" do
+    context "get coordinates for e2" do
+      it "should return [7,5]" do
+        expect(@board_class.square_to_xy("e", 2)).to eq([7,5])
+      end
+    end
+
+    context "get coordinates for b4" do
+      it "should return [5,2]" do
+        expect(@board_class.square_to_xy("b", 4)).to eq([5,2])
+      end
+    end
+
+    context "get coordinates for h1" do
+      it "should return [8,8]" do
+        expect(@board_class.square_to_xy("h", 1)).to eq([8,8])
+      end
+    end
+
+    context "get coordinates for a8" do
+      it "should return [1,1]" do
+        expect(@board_class.square_to_xy("a", 8)).to eq([1,1])
+      end
+    end
+  end
 end

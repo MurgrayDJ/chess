@@ -5,6 +5,7 @@ class Board
   ROWS = 10
   COLUMNS = 10
   DOTS = "\u2237"
+  RANKS = [nil, 8, 7, 6, 5, 4, 3, 2, 1].freeze
 
   def initialize
     # @board = board_setup
@@ -50,6 +51,12 @@ class Board
       if row_num == 0 then print bottom_line end
       if row_num == 8 then print bottom_line end
     end
+  end
+
+  def square_to_xy(file, rank)
+    x = RANKS[rank]
+    y = file.upcase.ord - 64
+    [x,y]
   end
 
   def move_piece(curr_pos, next_pos)
