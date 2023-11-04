@@ -11,4 +11,13 @@ RSpec.describe Chess do
       end
     end
   end
+
+  describe "#print_rules" do
+    context "rules are printed with dots for bullet points" do
+      it "should print the rules" do
+        @game.print_title
+        @game.print_rules
+      end
+    end
+  end
 end
