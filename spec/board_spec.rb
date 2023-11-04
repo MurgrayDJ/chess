@@ -144,19 +144,19 @@ RSpec.describe Board do
       before {@b_king = King.new(:black, [1,5])}
       it "should have the king in f7 [2,6]" do
         @board_class.board[1][5] = @b_king
-        @board_class.move_piece([1,5], [2,6])
+        @board_class.move_piece("e8", "f7")
         expect(@board_class.board[2][6]).to eq(@b_king)
       end
 
       it "should update the king's current position to [2,6]" do
         @board_class.board[1][5] = @b_king
-        @board_class.move_piece([1,5], [2,6])
+        @board_class.move_piece("e8", "f7")
         expect(@b_king.current_pos).to eq([2,6])
       end
 
       it "should set the has_moved flag to true" do
         @board_class.board[1][5] = @b_king
-        @board_class.move_piece([1,5], [2,6])
+        @board_class.move_piece("e8", "f7")
         expect(@b_king.has_moved).to be true
       end
     end
@@ -166,25 +166,25 @@ RSpec.describe Board do
 
       it "should have the pawn in h6 [3,8]" do
         @board_class.board[2][8] = @b_pawn
-        @board_class.move_piece([2,8], [3,8])
+        @board_class.move_piece("h7", "h6")
         expect(@board_class.board[3][8]).to eq(@b_pawn)
       end
 
       it "should update the pawn's current position to [3,8]" do
         @board_class.board[2][8] = @b_pawn
-        @board_class.move_piece([2,8], [3,8])
+        @board_class.move_piece("h7", "h6")
         expect(@b_pawn.current_pos).to eq([3,8])
       end
 
       it "should set the has_moved flag to true" do
         @board_class.board[2][8] = @b_pawn
-        @board_class.move_piece([2,8], [3,8])
+        @board_class.move_piece("h7", "h6")
         expect(@b_pawn.has_moved).to be true
       end
 
       it "should remove the 2 step move from the move hash" do
         @board_class.board[2][8] = @b_pawn
-        @board_class.move_piece([2,8], [3,8])
+        @board_class.move_piece("h7", "h6")
         expect(@b_pawn.moves.key?(:two_squares)).to be false
       end
     end

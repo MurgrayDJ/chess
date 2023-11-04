@@ -59,7 +59,9 @@ class Board
     [x,y]
   end
 
-  def move_piece(curr_pos, next_pos)
+  def move_piece(square1, square2)
+    curr_pos = square_to_xy(square1[0], square1[1].to_i)
+    next_pos = square_to_xy(square2[0], square2[1].to_i)
     curr_piece = @board[curr_pos[0]][curr_pos[1]]
     @board[next_pos[0]][next_pos[1]] = curr_piece
     curr_piece.update_piece(next_pos)
