@@ -225,4 +225,30 @@ RSpec.describe Board do
       end
     end
   end
+
+  describe "#xy_to_square" do
+    context "get square of [7,5]" do
+      it "should return e2" do
+        expect(@board_class.xy_to_square([7,5])).to eq("e2")
+      end
+    end
+
+    context "get square of [5,2]" do
+      it "should return b4" do
+        expect(@board_class.xy_to_square([5,2])).to eq("b4")
+      end
+    end
+
+    context "get square of [8,8]" do
+      it "should return h1" do
+        expect(@board_class.xy_to_square([8,8])).to eq("h1")
+      end
+    end
+
+    context "get square of [1,1]" do
+      it "should return a8" do
+        expect(@board_class.xy_to_square([1,1])).to eq("a8")
+      end
+    end
+  end
 end
