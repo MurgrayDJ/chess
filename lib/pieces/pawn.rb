@@ -7,11 +7,16 @@ class Pawn < Piece
   def initialize(color, start_pos)
     super(color, start_pos, :pawn)
     @has_moved = false
-    set_color(color)
+    set_symbol(color)
+    set_moves(color)
   end
 
-  def set_symbol
-    super
+  def set_symbol(color)
+    if color == :white
+      @symbol = "\u2659"
+    else
+      @symbol = "\u265F"
+    end
   end
 
   def update_piece(next_pos)
@@ -20,7 +25,7 @@ class Pawn < Piece
     @moves.delete(:two_squares)
   end
 
-  def set_color(color)
+  def set_moves(color)
     if color == :black
       @moves = {one_square: [[1,0]],
                 two_squares: [[2,0]]}

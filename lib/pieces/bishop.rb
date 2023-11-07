@@ -12,8 +12,12 @@ class Bishop < Piece
     super(color, start_pos, :bishop)
   end
 
-  def set_symbol
-    super
+  def set_symbol(color)
+    if color == :white
+      @symbol = "\u2657"
+    else
+      @symbol = "\u265D"
+    end
   end
 
   def update_piece(next_pos)

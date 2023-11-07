@@ -9,8 +9,12 @@ class King < Piece
     super(color, start_pos, :king)
   end
 
-  def set_symbol
-    super
+  def set_symbol(color)
+    if color == :white
+      @symbol = "\u2654"
+    else
+      @symbol = "\u265A"
+    end
   end
 
   def update_piece(next_pos)

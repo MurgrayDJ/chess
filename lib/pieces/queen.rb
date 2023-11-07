@@ -19,8 +19,12 @@ class Queen < Piece
     # generate_moves
   end
 
-  def set_symbol
-    super
+  def set_symbol(color)
+    if color == :white
+      @symbol = "\u2655"
+    else
+      @symbol = "\u265B"
+    end
   end
 
   def update_piece(next_pos)

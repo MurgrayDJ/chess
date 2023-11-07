@@ -13,15 +13,6 @@ class Piece
     @type = type
     @start_pos = start_pos
     @current_pos = start_pos
-    set_symbol
-  end
-
-  def set_symbol
-    if @type == :black
-      @symbol = "\u265a"
-    else
-      @symbol = "\u2654"
-    end
   end
 
   def update_piece(next_pos)

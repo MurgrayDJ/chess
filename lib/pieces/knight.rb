@@ -8,8 +8,12 @@ class Knight < Piece
     super(color, start_pos, :knight)
   end
 
-  def set_symbol
-    super
+  def set_symbol(color)
+    if color == :white
+      @symbol = "\u2658"
+    else
+      @symbol = "\u265E"
+    end
   end
 
   def update_piece(next_pos)

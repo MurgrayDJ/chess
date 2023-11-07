@@ -12,8 +12,12 @@ class Rook < Piece
     super(color, start_pos, :rook)
   end
 
-  def set_symbol
-    super
+  def set_symbol(color)
+    if color == :white
+      @symbol = "\u2656"
+    else
+      @symbol = "\u265C"
+    end
   end
 
   def update_piece(next_pos)
