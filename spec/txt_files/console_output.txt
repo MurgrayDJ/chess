@@ -1,16 +1,27 @@
- ___    ________________________________    ___ 
-|   |  | a  | b | c | d | e | f | g | h |  |   | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅     ̅ ̅ ̅  
- ___    ________________________________    ___ 
-| 8 |  | ∷  |   | ∷ |   | ∷ |   | ∷ |   |  | 8 | 
-| 7 |  |    | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 7 | 
-| 6 |  | ∷  |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
-| 5 |  |    | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
-| 4 |  | ∷  |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
-| 3 |  |    | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
-| 2 |  | ∷  |   | ∷ |   | ∷ |   | ∷ |   |  | 2 | 
-| 1 |  |    | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 1 | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅     ̅ ̅ ̅  
- ___    ________________________________    ___ 
-|   |  | a  | b | c | d | e | f | g | h |  |   | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅     ̅ ̅ ̅  
+
+∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ CHESS ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ 
+
+∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ CHESS ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ 
+
+How to play: 
+ ∷ If you don't already know how to play chess, please reference other 
+   material for overall instructions
+ ∷ The White side is whichever one that starts on ranks 1 and 2 
+   (towards the bottom of the screen.)
+ ∷ Player 1 is White and goes first. Then players alternate turns.
+ ∷ When it's your turn to play, please enter the file then rank of the 
+   piece you would like to move. (e.g., e2, f7)
+ ∷ Then enter the file then rank of the space you'd like to move your 
+   piece to.
+ ∷ Type 'exit' to leave at any time.
+ ∷ Type 'help' at any time to repeat this message.
+
+∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ 
+Player 1 name: Confirm name Bob? (Y/N): Player 2 name: Confirm name Mumu? (Y/N): Player 2 name: Confirm name Linda? (Y/N): Player 1 name: Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): Confirm name Bob? (Y/N): player1
+player1
+player1
+player1
+player1
+player1
+player1
+player1

@@ -1,17 +1,24 @@
-require_relative './board.rb'
+require_relative 'board.rb'
+require_relative 'player.rb'
+Dir[File.join(__dir__, './pieces', '*.rb')].each { |file| require file }
 
 class Chess
   attr_accessor :board
+  attr_accessor :player1
+  attr_accessor :player2
   DOTS = "\u2237"
   
-  def initalize
+  def initialize
     @board = Board.new()
+    @player1 = Player.new("player1", :white)
+    @player2 = Player.new("player2", :black)
   end
 
   def run_game
     print_title
     print_rules
     create_players
+    generate_pieces
   end
 
   def print_title
@@ -44,12 +51,25 @@ class Chess
     puts " #{DOTS} Type 'exit' to leave at any time."
     puts " #{DOTS} Type 'help' at any time to repeat this message.\n\n"
     puts "#{DOTS} " * 21 
+    puts
   end
 
   def create_players
     puts "Welcome Players! Please enter your names: "
-    @player1 = Player.new(get_names(1), :white)
-    @player2 = Player.new(get_names(2), :black)
+    @player1.name = get_names(1)
+    @player2.name = get_names(2)
+  end
+
+  def generate_pieces()
+    (1..8).each do |file|
+      white_pawn = Pawn.new(:white, [1,file])
+      @player1.pieces << white_pawn
+      @board.board[2][file] = white_pawn
+      
+      black_pawn = Pawn.new(:black, [7,file])
+      @player2.pieces << black_pawn
+      @board.board[7][file] = black_pawn
+    end
   end
 
   def get_names(player_num)
@@ -91,3 +111,6 @@ class Chess
     response = get_valid_data(prompt, response, valid_responses)  
   end
 end
+
+# new_game = Chess.new()
+# new_game.run_game

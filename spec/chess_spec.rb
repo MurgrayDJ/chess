@@ -1,4 +1,5 @@
 require_relative '../lib/chess.rb'
+require_relative '../lib/player.rb'
 
 RSpec.describe Chess do
   before { @game = described_class.new }
@@ -41,6 +42,15 @@ RSpec.describe Chess do
         allow(@game).to receive(:gets).and_return(
           "Bob\n", "kdyfj\n", "2836%(^*\n", "banana34\n", "Y\n")
         expect(@game.get_names(1)).to eq("Bob")
+      end
+    end
+  end
+
+  describe "#generate_pieces" do
+    context 'Generates pawns for players' do
+      it 'should generate 8 pawns for player 1' do
+        @game.generate_pieces
+        expect(@game.player1.pieces.length).to eq(8)
       end
     end
   end
