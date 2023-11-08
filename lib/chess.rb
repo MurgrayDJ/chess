@@ -62,13 +62,13 @@ class Chess
 
   def generate_pieces()
     (1..8).each do |file|
-      white_pawn = Pawn.new(:white, [1,file])
-      @player1.pieces << white_pawn
-      @board.board[2][file] = white_pawn
-      
-      black_pawn = Pawn.new(:black, [7,file])
+      black_pawn = Pawn.new(:black, [2,file])
       @player2.pieces << black_pawn
-      @board.board[7][file] = black_pawn
+      @board.board[2][file] = black_pawn
+
+      white_pawn = Pawn.new(:white, [7,file])
+      @player1.pieces << white_pawn
+      @board.board[7][file] = white_pawn
     end
   end
 

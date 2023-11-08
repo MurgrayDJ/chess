@@ -48,9 +48,23 @@ RSpec.describe Chess do
 
   describe "#generate_pieces" do
     context 'Generates pawns for players' do
+      before { @game.generate_pieces }
+
       it 'should generate 8 pawns for player 1' do
-        @game.generate_pieces
+        @game.board.print_board
         expect(@game.player1.pieces.length).to eq(8)
+      end
+      
+      it 'should set row 2 [rank 7] of the board to black pawns' do
+        result = @game.board.board[2].all? do |square| 
+          square.instance_of?(Integer) || square.color == :black
+        end
+        expect(result).to be true
+      end
+
+      it 'should set row 7 [rank 2] of the board to black pawns' do
+        result = @game.board.board[2].none?{|square| square.instance_of?(String)}
+        expect(result).to be true
       end
     end
   end

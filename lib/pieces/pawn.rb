@@ -13,9 +13,9 @@ class Pawn < Piece
 
   def set_symbol(color)
     if color == :white
-      @symbol = "\u2659"
-    else
       @symbol = "\u265F"
+    else
+      @symbol = "\u2659"
     end
   end
 
