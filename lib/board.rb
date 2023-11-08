@@ -1,4 +1,4 @@
-require_relative './piece.rb'
+require_relative 'piece.rb'
 
 class Board
   attr_accessor :board
@@ -38,7 +38,7 @@ class Board
       if row_num == 9 then print top_line end
       if row_num == 1 then print top_line end
       row.each_with_index do |val, col_num|
-        if val.instance_of?(Piece) then val = val.symbol end
+        if val.respond_to?(:symbol) then val = val.symbol end
         if col_num != 1 && col_num != 9
           print "| #{val} "
         elsif col_num == 1
