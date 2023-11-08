@@ -21,9 +21,9 @@ class Queen < Piece
 
   def set_symbol(color)
     if color == :white
-      @symbol = "\u2655"
-    else
       @symbol = "\u265B"
+    else
+      @symbol = "\u2655"
     end
   end
 

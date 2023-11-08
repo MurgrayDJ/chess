@@ -14,9 +14,9 @@ class Rook < Piece
 
   def set_symbol(color)
     if color == :white
-      @symbol = "\u2656"
-    else
       @symbol = "\u265C"
+    else
+      @symbol = "\u2656"
     end
   end
 

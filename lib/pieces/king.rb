@@ -11,9 +11,9 @@ class King < Piece
 
   def set_symbol(color)
     if color == :white
-      @symbol = "\u2654"
-    else
       @symbol = "\u265A"
+    else
+      @symbol = "\u2654"
     end
   end
 

@@ -14,9 +14,9 @@ class Bishop < Piece
 
   def set_symbol(color)
     if color == :white
-      @symbol = "\u2657"
-    else
       @symbol = "\u265D"
+    else
+      @symbol = "\u2657"
     end
   end
 
