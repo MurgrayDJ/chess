@@ -46,9 +46,9 @@ RSpec.describe Chess do
     end
   end
 
-  describe "#generate_pieces" do
+  describe "#generate_pawns" do
     context 'Generates pawns for players' do
-      before { @game.generate_pieces }
+      before { @game.generate_pawns }
 
       it 'should generate 8 pawns for player 1' do
         @game.board.print_board

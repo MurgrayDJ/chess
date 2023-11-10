@@ -60,7 +60,11 @@ class Chess
     @player2.name = get_names(2)
   end
 
-  def generate_pieces()
+  def generate_pieces
+    generate_pawns
+  end
+
+  def generate_pawns()
     (1..8).each do |file|
       black_pawn = Pawn.new(:black, [2,file])
       @player2.pieces << black_pawn
