@@ -63,7 +63,8 @@ class Chess
   def generate_pieces
     generate_noble_pieces(:black, 1, 8)
     generate_noble_pieces(:white, 8, 1)
-    generate_pawns
+    generate_pawns(:black, 2)
+    generate_pawns(:white, 7)
   end
 
   def generate_noble_pieces(color, row, rank)
@@ -84,15 +85,10 @@ class Chess
     end
   end
 
-  def generate_pawns()
+  def generate_pawns(color, row)
     (1..8).each do |file|
-      black_pawn = Pawn.new(:black, [2,file])
-      @player2.pieces << black_pawn
-      @board.board[2][file] = black_pawn
-
-      white_pawn = Pawn.new(:white, [7,file])
-      @player1.pieces << white_pawn
-      @board.board[7][file] = white_pawn
+      pawn = Pawn.new(color, [row, file])
+      @board.board[row][file] = pawn
     end
   end
 

@@ -48,11 +48,9 @@ RSpec.describe Chess do
 
   describe "#generate_pawns" do
     context 'Generates pawns for players' do
-      before { @game.generate_pawns }
-
-      it 'should generate 8 pawns for player 1' do
-        @game.board.print_board
-        expect(@game.player1.pieces.length).to eq(8)
+      before do 
+        @game.generate_pawns(:black, 2) 
+        @game.generate_pawns(:white, 7) 
       end
       
       it 'should set row 2 [rank 7] of the board to black pawns' do
@@ -62,27 +60,34 @@ RSpec.describe Chess do
         expect(result).to be true
       end
 
-      it 'should set row 7 [rank 2] of the board to black pawns' do
+      it 'should set row 7 [rank 2] of the board to white pawns' do
         result = @game.board.board[2].none?{|square| square.instance_of?(String)}
         expect(result).to be true
       end
     end
   end
 
-  describe "generate_noble_pieces" do
+  describe "#generate_noble_pieces" do
     context 'generate pieces for black' do
       before { @game.generate_noble_pieces(:black, 1, 8) }
-      it "should show the pieces on the board" do
-        @game.board.print_board
+      it "should have a piece on a1" do
         expect(@game.board.board[1][1].respond_to?(:color)).to be true
       end
     end
 
     context 'generate pieces for black' do
       before { @game.generate_noble_pieces(:white, 8, 1) }
-      it "should show the pieces on the board" do
-        @game.board.print_board
+      it "should have a piece on h8" do
         expect(@game.board.board[8][8].respond_to?(:color)).to be true
+      end
+    end
+  end
+
+  describe "#generate_pieces" do
+    before { @game.generate_pieces }
+    context "generate all the board pieces" do
+      it "should have all pieces on the board" do
+        @game.board.print_board
       end
     end
   end
