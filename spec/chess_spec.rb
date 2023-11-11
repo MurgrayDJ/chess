@@ -87,6 +87,7 @@ RSpec.describe Chess do
     before { @game.generate_pieces }
     context "generate all the board pieces" do
       it "should have all pieces on the board" do
+        puts
         @game.board.print_board
       end
     end
