@@ -68,4 +68,22 @@ RSpec.describe Chess do
       end
     end
   end
+
+  describe "generate_noble_pieces" do
+    context 'generate pieces for black' do
+      before { @game.generate_noble_pieces(:black, 1, 8) }
+      it "should show the pieces on the board" do
+        @game.board.print_board
+        expect(@game.board.board[1][1].respond_to?(:color)).to be true
+      end
+    end
+
+    context 'generate pieces for black' do
+      before { @game.generate_noble_pieces(:white, 8, 1) }
+      it "should show the pieces on the board" do
+        @game.board.print_board
+        expect(@game.board.board[8][8].respond_to?(:color)).to be true
+      end
+    end
+  end
 end

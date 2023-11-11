@@ -61,7 +61,27 @@ class Chess
   end
 
   def generate_pieces
+    generate_noble_pieces(:black, 1, 8)
+    generate_noble_pieces(:white, 8, 1)
     generate_pawns
+  end
+
+  def generate_noble_pieces(color, row, rank)
+    noble_pieces = [
+      rank,
+      Rook.new(color, [row, 1]),
+      Knight.new(color,[row, 2]),
+      Bishop.new(color,[row, 3]),
+      Queen.new(color,[row, 4]),
+      King.new(color,[row, 5]),
+      Bishop.new(color,[row, 6]),
+      Knight.new(color,[row, 7]),
+      Rook.new(color,[row, 8]),
+      rank
+    ]
+    noble_pieces.each_with_index do |piece, idx|
+      @board.board[row][idx] = noble_pieces[idx]
+    end
   end
 
   def generate_pawns()
