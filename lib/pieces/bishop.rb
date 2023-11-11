@@ -10,6 +10,7 @@ class Bishop < Piece
 
   def initialize(color, start_pos)
     super(color, start_pos, :bishop)
+    set_symbol(color)
   end
 
   def set_symbol(color)

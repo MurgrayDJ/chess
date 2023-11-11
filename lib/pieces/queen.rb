@@ -15,8 +15,7 @@ class Queen < Piece
 
   def initialize(color, start_pos)
     super(color, start_pos, :queen)
-    # @moves = []
-    # generate_moves
+    set_symbol(color)
   end
 
   def set_symbol(color)
@@ -30,15 +29,6 @@ class Queen < Piece
   def update_piece(next_pos)
     super
   end
-
-  # def generate_moves
-  #   (1..7).each do |num|
-  #     current_nums = [0, num, -num]
-  #     temp_array = current_nums.product(current_nums)
-  #     temp_array.delete([0,0])
-  #     @moves.push(*temp_array)
-  #   end
-  # end
 
   def get_moves
     super(MOVES)

@@ -7,6 +7,7 @@ class King < Piece
 
   def initialize(color, start_pos)
     super(color, start_pos, :king)
+    set_symbol(color)
   end
 
   def set_symbol(color)
