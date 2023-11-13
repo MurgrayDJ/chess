@@ -52,7 +52,7 @@ class Board
   end
 
   def square_to_xy(file, rank)
-    x = RANKS[rank]
+    x = RANKS[rank.to_i]
     y = file.upcase.ord - 64
     [x,y]
   end

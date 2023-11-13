@@ -19,6 +19,42 @@ class Chess
     print_rules
     create_players
     generate_pieces
+    play_game
+  end
+
+  def play_game
+    play_round
+  end
+
+  def play_round
+    player_moves(@player1, "\u265A")
+    player_moves(@player2, "\u2654")
+  end
+
+  def player_moves(player, king_sym)
+    print "#{king_sym} #{player.name}'s turn #{king_sym}"
+    square = get_square(player)
+
+    square_xy = @board.square_to_xy(square[0], square[1])
+    piece_to_move = @board.board[square_xy[0], square_xy[1]]
+    if piece_to_move.respond_to?(:color)
+      if piece_to_move.color == player.color 
+        move_piece
+      end
+    end
+    # response = get_valid_data(confirmation, nil, ["Y", "N"])
+    # if response == "N" then name = nil end
+    # name
+  end
+
+  def get_square(player)
+    square = ""
+    print "#{player.name} choose the square of the piece to move: "
+    until square.match?(/^[a-z]{1}\d{1}$/i)
+      print "Invalid square, try again: "
+      square = gets.chomp
+    end
+    square
   end
 
   def print_title
