@@ -1,5 +1,6 @@
 require_relative '../lib/chess.rb'
 require_relative '../lib/player.rb'
+Dir[File.join(__dir__, '../lib/pieces', '*.rb')].each { |file| require file }
 
 RSpec.describe Chess do
   before { @game = described_class.new }
@@ -120,6 +121,31 @@ RSpec.describe Chess do
       it "should only return once a valid square is entered (c4)" do
         allow(@game).to receive(:gets).and_return("k4\n", "c4\n")
         expect(@game.get_square(player1)).to eq("c4")
+      end
+    end
+  end
+
+  describe "#get_piece_from_square" do
+    before { @game.generate_pieces }
+    context "there is a piece on square b1" do
+      it "should return the piece (a Knight)" do
+        square = "b1"
+        square_val = @game.get_piece_from_square(square)
+        expect(square_val.is_a?(Knight)).to be true
+      end
+    end
+
+    context "there is no piece on the square" do
+      it "should return a value of type String (a space)" do
+        square = "e5"
+        square_val = @game.get_piece_from_square(square)
+        expect(square_val.is_a?(String)).to be true
+      end
+
+      it "should return a value of type String (dots)" do
+        square = "g6"
+        square_val = @game.get_piece_from_square(square)
+        expect(square_val.is_a?(String)).to be true
       end
     end
   end

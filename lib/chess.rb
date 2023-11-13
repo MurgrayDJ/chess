@@ -33,28 +33,47 @@ class Chess
 
   def player_moves(player, king_sym)
     print "#{king_sym} #{player.name}'s turn #{king_sym}"
-    square = get_square(player)
-
-    square_xy = @board.square_to_xy(square[0], square[1])
-    piece_to_move = @board.board[square_xy[0], square_xy[1]]
-    if piece_to_move.respond_to?(:color)
-      if piece_to_move.color == player.color 
-        move_piece
+    print "#{player.name}, choose the square of the piece to move: "
+    piece_valid = false
+    until piece_valid
+      square = get_square(player)
+      piece = get_piece_from_square(square)
+      if check_color(player, piece)
+        confirmation = "Confirm moving #{piece.type} from #{square}? (Y/N): "
+        response = get_valid_data(confirmation, nil, ["Y", "N"])
+        if response == "Y" then piece_valid end
       end
     end
-    # response = get_valid_data(confirmation, nil, ["Y", "N"])
-    # if response == "N" then name = nil end
-    # name
+  end
+
+  def check_color(player, piece)
+    valid_piece = false
+    if piece.respond_to?(:color)
+      if piece.color == player.color 
+        valid_piece = true
+      else
+        print "Other player's piece chosen. "
+      end
+    else
+      print "Empty square. "
+    end
+    valid_piece
   end
 
   def get_square(player)
     square = ""
-    print "#{player.name}, choose the square of the piece to move: "
     until square.match?(/^[a-h]{1}[1-8]{1}$/i)
       print "Invalid square, try again: "
       square = gets.chomp
     end
     square
+  end
+
+  def get_piece_from_square(square)
+    square_xy = @board.square_to_xy(square[0], square[1])
+    x = square_xy[0]
+    y = square_xy[1]
+    @board.board[x][y]
   end
 
   def print_title
