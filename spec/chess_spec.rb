@@ -96,16 +96,30 @@ RSpec.describe Chess do
   describe "#get_square" do
     player1 = Player.new("Zari", :white)
     context "player enters correctly formatted square (h3)" do
-      it "should return the square" do
+      it "should return the square (h3)" do
         allow(@game).to receive(:gets).and_return("h3\n")
         expect(@game.get_square(player1)).to eq("h3")
       end
     end
 
     context "player enters square with capital letter (E6)" do
-      it "should return the square" do
+      it "should return the square (E6)" do
         allow(@game).to receive(:gets).and_return("E6\n")
         expect(@game.get_square(player1)).to eq("E6")
+      end
+    end
+
+    context "player enters square with invalid rank (a9)" do
+      it "should only return once a valid square is entered (a8)" do
+        allow(@game).to receive(:gets).and_return("a9\n", "a8\n")
+        expect(@game.get_square(player1)).to eq("a8")
+      end
+    end
+
+    context "player enters square with invalid file (k4)" do
+      it "should only return once a valid square is entered (c4)" do
+        allow(@game).to receive(:gets).and_return("k4\n", "c4\n")
+        expect(@game.get_square(player1)).to eq("c4")
       end
     end
   end
