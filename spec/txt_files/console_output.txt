@@ -35,4 +35,4 @@ Player 1 name: Confirm name Bob? (Y/N): Player 2 name: Confirm name Mumu? (Y/N):
  ___    ________________________________   ___ 
 |   |  | a | b | c | d | e | f | g | h |  |   | 
  ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
-Zari choose the square of the piece to move: Invalid square, try again: 
+Zari, choose the square of the piece to move: Invalid square, try again: Zari, choose the square of the piece to move: Invalid square, try again: 

@@ -94,11 +94,18 @@ RSpec.describe Chess do
   end
 
   describe "#get_square" do
-    context "player enters correctly formatted square" do
+    player1 = Player.new("Zari", :white)
+    context "player enters correctly formatted square (h3)" do
       it "should return the square" do
         allow(@game).to receive(:gets).and_return("h3\n")
-        player1 = Player.new("Zari", :white)
         expect(@game.get_square(player1)).to eq("h3")
+      end
+    end
+
+    context "player enters square with capital letter (E6)" do
+      it "should return the square" do
+        allow(@game).to receive(:gets).and_return("E6\n")
+        expect(@game.get_square(player1)).to eq("E6")
       end
     end
   end

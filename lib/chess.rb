@@ -49,8 +49,8 @@ class Chess
 
   def get_square(player)
     square = ""
-    print "#{player.name} choose the square of the piece to move: "
-    until square.match?(/^[a-z]{1}\d{1}$/i)
+    print "#{player.name}, choose the square of the piece to move: "
+    until square.match?(/^[a-h]{1}[1-8]{1}$/i)
       print "Invalid square, try again: "
       square = gets.chomp
     end
