@@ -95,42 +95,41 @@ RSpec.describe Chess do
   end
 
   describe "#get_square" do
-    player1 = Player.new("Zari", :white)
     context "player enters correctly formatted square (h3)" do
       it "should return the square (h3)" do
         allow(@game).to receive(:gets).and_return("h3\n")
-        expect(@game.get_square(player1)).to eq("h3")
+        expect(@game.get_square("h3")).to eq("h3")
       end
     end
 
     context "player enters square with capital letter (E6)" do
       it "should return the square (E6)" do
         allow(@game).to receive(:gets).and_return("E6\n")
-        expect(@game.get_square(player1)).to eq("E6")
+        expect(@game.get_square("E6")).to eq("E6")
       end
     end
 
     context "player enters square with invalid rank (a9)" do
       it "should only return once a valid square is entered (a8)" do
         allow(@game).to receive(:gets).and_return("a9\n", "a8\n")
-        expect(@game.get_square(player1)).to eq("a8")
+        expect(@game.get_square("a9")).to eq("a8")
       end
     end
 
     context "player enters square with invalid file (k4)" do
       it "should only return once a valid square is entered (c4)" do
         allow(@game).to receive(:gets).and_return("k4\n", "c4\n")
-        expect(@game.get_square(player1)).to eq("c4")
+        expect(@game.get_square("k4")).to eq("c4")
       end
     end
   end
 
-  describe "#get_piece_from_square" do
+  describe "#get_square_val" do
     before { @game.generate_pieces }
     context "there is a piece on square b1" do
       it "should return the piece (a Knight)" do
         square = "b1"
-        square_val = @game.get_piece_from_square(square)
+        square_val = @game.get_square_val(square)
         expect(square_val.is_a?(Knight)).to be true
       end
     end
@@ -138,14 +137,54 @@ RSpec.describe Chess do
     context "there is no piece on the square" do
       it "should return a value of type String (a space)" do
         square = "e5"
-        square_val = @game.get_piece_from_square(square)
+        square_val = @game.get_square_val(square)
         expect(square_val.is_a?(String)).to be true
       end
 
       it "should return a value of type String (dots)" do
         square = "g6"
-        square_val = @game.get_piece_from_square(square)
+        square_val = @game.get_square_val(square)
         expect(square_val.is_a?(String)).to be true
+      end
+    end
+  end
+
+  describe "#right_color?" do
+    player1 = Player.new("Zari", :white)
+    player2 = Player.new("Lily", :black)
+
+    context "player wants to move their own piece" do
+      it "should return true" do
+        king = King.new(:black, [1,5])
+        expect(@game.right_color?(player2, king)).to be true
+      end
+    end
+
+    context "player tries to move other player's piece" do
+      it "should print a message about other player's piece" do
+        queen = Queen.new(:white, [8,4])
+        expect do 
+          @game.right_color?(player2, queen)
+        end.to output(a_string_including("Other player's piece chosen. ")).to_stdout
+      end
+      
+      it "should return false" do
+        queen = Queen.new(:white, [8,4])
+        expect(@game.right_color?(player2, queen)).to be false
+      end
+    end
+  end
+
+  describe "#player_moves" do
+    before { @game.generate_pieces }
+    player1 = Player.new("Zari", :white)
+    player2 = Player.new("Lily", :black)
+
+    context "Player tries to move their own piece" do
+      it "should call the move_piece method" do
+        allow(@game).to receive(:gets).and_return("c1\n", "Y\n")
+        expect(@game).to receive(:move_piece)
+        @game.player_moves(player1, "\u265A")
       end
     end
   end

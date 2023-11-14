@@ -35,4 +35,4 @@ Player 1 name: Confirm name Bob? (Y/N): Player 2 name: Confirm name Mumu? (Y/N):
  ___    ________________________________   ___ 
 |   |  | a | b | c | d | e | f | g | h |  |   | 
  ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
-Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: 
+Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Other player's piece chosen. ♚ Zari's turn ♚Zari, choose the square of the piece to move: Confirm moving bishop from c1? (Y/N): 
