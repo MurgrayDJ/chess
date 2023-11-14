@@ -70,7 +70,7 @@ class Chess
     if moves.is_a?(Array)
       converted_moves = moves.map{|move| @board.xy_to_square(move)}
     else
-      converted_moves = map{|direction, move| @board.xy_to_square(move)}
+      converted_moves = moves.values.reduce([], :concat).map{|move| @board.xy_to_square(move)}
     end
     puts converted_moves.join(" ")
     converted_moves

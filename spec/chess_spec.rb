@@ -249,5 +249,24 @@ RSpec.describe Chess do
         expect(@game.board.board[6][1].is_a?(Knight)).to be true
       end
     end
+
+    context "Player moves d8 queen to h4" do
+      it "should move the queen to h4" do
+        d8_queen = @game.board.board[1][4]
+        @game.board.board[2][5] = " "
+        allow(@game).to receive(:gets).and_return("h4\n", "Y\n")
+        @game.move_piece("d8", d8_queen)
+        expect(@game.board.board[5][8].is_a?(Queen)).to be true
+      end
+    end
+
+    context "Player changes mind about moving piece to a spot" do
+      it "should move the piece to second spot" do
+        g7_pawn = @game.board.board[2][7]
+        allow(@game).to receive(:gets).and_return("g6\n", "N\n", "g5\n", "Y\n")
+        @game.move_piece("g7", g7_pawn)
+        expect(@game.board.board[4][7].is_a?(Pawn)).to be true
+      end
+    end
   end
 end
