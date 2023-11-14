@@ -108,6 +108,7 @@ class Board
         end
       end
     end
+    moves
   end
 
   def check_surroundings(piece, moves)

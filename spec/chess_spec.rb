@@ -187,9 +187,9 @@ RSpec.describe Chess do
     player1 = Player.new("Zari", :white)
     player2 = Player.new("Lily", :black)
 
-    context "Player tries to move their own piece" do
+    context "Player tries to move their own pawn" do
       it "should call the move_piece method" do
-        allow(@game).to receive(:gets).and_return("c1\n", "Y\n")
+        allow(@game).to receive(:gets).and_return("c2\n", "Y\n")
         expect(@game).to receive(:move_piece)
         @game.player_moves(player1, "\u265A")
       end
@@ -205,7 +205,23 @@ RSpec.describe Chess do
 
     context "Player tries to enter empty square" do
       it "should reprompt them, then move the second piece" do
-        allow(@game).to receive(:gets).and_return("g5\n", "h1\n", "Y\n")
+        allow(@game).to receive(:gets).and_return("g5\n", "h2\n", "Y\n")
+        expect(@game).to receive(:move_piece)
+        @game.player_moves(player1, "\u265A")
+      end
+    end
+
+    context "Player tries to move trapped king" do
+      it "should reprompt them, then move the second piece" do
+        allow(@game).to receive(:gets).and_return("e1\n", "g1\n", "Y\n")
+        expect(@game).to receive(:move_piece)
+        @game.player_moves(player1, "\u265A")
+      end
+    end
+
+    context "Player tries to move trapped queen" do
+      it "should reprompt them, then move the second piece" do
+        allow(@game).to receive(:gets).and_return("d1\n", "b1\n", "Y\n")
         expect(@game).to receive(:move_piece)
         @game.player_moves(player1, "\u265A")
       end
@@ -213,7 +229,7 @@ RSpec.describe Chess do
 
     context "Player tries 3 invalid squares" do
       it "won't move on until they enter the fourth valid one" do
-        allow(@game).to receive(:gets).and_return("b1\n", "c6\n", "banana\n", "e8\n", "Y\n")
+        allow(@game).to receive(:gets).and_return("b1\n", "c6\n", "banana\n", "e7\n", "Y\n")
         expect(@game).to receive(:move_piece)
         @game.player_moves(player2, "\u2654")
       end

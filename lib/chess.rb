@@ -65,9 +65,27 @@ class Chess
 
   def piece_valid?(player, square_val)
     if square_val.is_a?(Piece)
-      if right_color?(player, square_val) then return true end
+      piece = square_val
+      if right_color?(player, piece) 
+        if has_valid_moves?(piece)
+          return true
+        end
+      end
     else
-      print "Empty square. "
+      print "No piece there. "
+      false
+    end
+  end
+
+  def has_valid_moves?(piece)
+    moves = @board.check_surroundings(piece, piece.get_moves)
+    if moves.is_a?(Hash)
+      moves = moves.values.reduce([], :concat)
+    end
+    if moves.length != 0
+      true
+    else
+      print "No valid moves available. "
       false
     end
   end
