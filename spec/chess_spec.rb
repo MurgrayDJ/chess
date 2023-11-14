@@ -122,6 +122,13 @@ RSpec.describe Chess do
         expect(@game.get_square("k4")).to eq("c4")
       end
     end
+
+    context "player enters nonsense value (lkd4#$%fs)" do
+      it "should only return once a valid square is entered (d4)" do
+        allow(@game).to receive(:gets).and_return("lkd4#$%fs\n", "d4\n")
+        expect(@game.get_square("lkd4#$%fs")).to eq("d4")
+      end
+    end
   end
 
   describe "#get_square_val" do
@@ -201,6 +208,14 @@ RSpec.describe Chess do
         allow(@game).to receive(:gets).and_return("g5\n", "h1\n", "Y\n")
         expect(@game).to receive(:move_piece)
         @game.player_moves(player1, "\u265A")
+      end
+    end
+
+    context "Player tries 3 invalid squares" do
+      it "won't move on until they enter the fourth valid one" do
+        allow(@game).to receive(:gets).and_return("b1\n", "c6\n", "banana\n", "e8\n", "Y\n")
+        expect(@game).to receive(:move_piece)
+        @game.player_moves(player2, "\u2654")
       end
     end
   end
