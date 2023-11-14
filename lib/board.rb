@@ -81,7 +81,7 @@ class Board
     end
   end
 
-  def delete_move(piece, move_list)
+  def delete_arr_moves(piece, move_list)
     move_list.delete_if do |spot|
       spot_val = @board[spot[0]][spot[1]]
       if spot_val.instance_of?(String)
@@ -93,7 +93,7 @@ class Board
     move_list
   end
 
-  def delete_moves(piece, moves)
+  def delete_hash_moves(piece, moves)
     moves.values.each do |move_list|
       move_list.each_with_index do |move, idx|
         spot_val = @board[move[0]][move[1]]
@@ -113,9 +113,9 @@ class Board
 
   def check_surroundings(piece, moves)
     if moves.is_a?(Array)
-      delete_move(piece, moves)
+      delete_arr_moves(piece, moves)
     else
-      delete_moves(piece, moves)
+      delete_hash_moves(piece, moves)
     end
   end
 end
