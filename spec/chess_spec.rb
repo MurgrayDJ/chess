@@ -195,5 +195,13 @@ RSpec.describe Chess do
         @game.player_moves(player2, "\u2654")
       end
     end
+
+    context "Player tries to enter empty square" do
+      it "should reprompt them, then move the second piece" do
+        allow(@game).to receive(:gets).and_return("g5\n", "h1\n", "Y\n")
+        expect(@game).to receive(:move_piece)
+        @game.player_moves(player1, "\u265A")
+      end
+    end
   end
 end
