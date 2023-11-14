@@ -35,13 +35,15 @@ class Chess
     print "#{king_sym} #{player.name}'s turn #{king_sym}"
     print "#{player.name}, choose the square of the piece to move: "
     square = gets.chomp
-    confirmed_piece = false
     square_val = nil
+    confirmed_piece = false
     until confirmed_piece
       square = get_square(square)
       square_val = get_square_val(square)
       if piece_valid?(player, square_val)
         if confirm_piece?(square_val, square) then confirmed_piece = true end
+      else
+        square = ''
       end
     end
     move_piece(square_val)
@@ -55,9 +57,9 @@ class Chess
     confirmation = "Confirm moving #{piece.type} from #{square}? (Y/N): "
     response = get_valid_data(confirmation, nil, ["Y", "N"])
     if response == "Y"
-      return true 
+      true 
     else
-      return false
+      false
     end
   end
 
@@ -66,12 +68,12 @@ class Chess
       if right_color?(player, square_val) then return true end
     else
       print "Empty square. "
+      false
     end
-    false
   end
 
   def right_color?(player, piece)
-    if piece.color == player.color 
+    if player.color == piece.color
       true
     else
       print "Other player's piece chosen. "

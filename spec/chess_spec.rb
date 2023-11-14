@@ -187,5 +187,13 @@ RSpec.describe Chess do
         @game.player_moves(player1, "\u265A")
       end
     end
+
+    context "Player tries to move another player's piece" do
+      it "should reprompt them, then move the second piece" do
+        allow(@game).to receive(:gets).and_return("d2\n", "f7\n", "Y\n")
+        expect(@game).to receive(:move_piece)
+        @game.player_moves(player2, "\u2654")
+      end
+    end
   end
 end
