@@ -41,20 +41,42 @@ class Chess
       square = get_square(square)
       square_val = get_square_val(square)
       if piece_valid?(player, square_val)
-        if confirm_piece?(square_val, square) then confirmed_piece = true end
+        confirmation = "Confirm moving #{square_val.type} from #{square}? (Y/N): "
+        if confirm_choice?(confirmation) then confirmed_piece = true end
       else
         square = ''
       end
     end
-    move_piece(square_val)
+    move_piece(square, square_val)
   end
 
-  def move_piece(square_val)
-    puts "Hooray! Piece successfully moved."
+  def move_piece(old_square, piece)
+    moves = @board.check_surroundings(piece, piece.get_moves)
+    converted_moves = show_user_moves(piece, moves)
+    move_confirmed = false
+    until move_confirmed
+      prompt = "Enter one of the above squares to move: "
+      new_square = get_valid_data(prompt, nil, converted_moves.map{|move| move.upcase}).downcase
+      confirmation = "Confirm moving #{piece.type} to #{new_square}? (Y/N): "
+      move_confirmed = confirm_choice?(confirmation)
+    end
+    @board.move_piece(old_square, new_square)
+    puts "#{piece.color.capitalize} #{piece.type} moves from #{old_square} to #{new_square}"
   end
 
-  def confirm_piece?(piece, square)
-    confirmation = "Confirm moving #{piece.type} from #{square}? (Y/N): "
+  def show_user_moves(piece, moves)
+    print "This #{piece.type} can be moved to: "
+    converted_moves = ''
+    if moves.is_a?(Array)
+      converted_moves = moves.map{|move| @board.xy_to_square(move)}
+    else
+      converted_moves = map{|direction, move| @board.xy_to_square(move)}
+    end
+    puts converted_moves.join(" ")
+    converted_moves
+  end
+
+  def confirm_choice?(confirmation)
     response = get_valid_data(confirmation, nil, ["Y", "N"])
     if response == "Y"
       true 

@@ -235,4 +235,19 @@ RSpec.describe Chess do
       end
     end
   end
+
+  describe "#move_piece" do
+    before { @game.generate_pieces }
+    player1 = Player.new("Zari", :white)
+    player2 = Player.new("Lily", :black)
+    
+    context "Player moves b1 knight to a3" do
+      it "should move the knight to a3" do
+        b1_knight = @game.board.board[8][2]
+        allow(@game).to receive(:gets).and_return("a3\n", "Y\n")
+        @game.move_piece("b1", b1_knight)
+        expect(@game.board.board[6][1].is_a?(Knight)).to be true
+      end
+    end
+  end
 end
