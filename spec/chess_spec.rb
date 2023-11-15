@@ -236,12 +236,9 @@ RSpec.describe Chess do
     end
   end
 
-  describe "#move_piece" do
-    before { @game.generate_pieces }
-    player1 = Player.new("Zari", :white)
-    player2 = Player.new("Lily", :black)
-    
-    context "Player moves b1 knight to a3" do
+  describe "#move_piece" do 
+    context "Player moves b1 knight to a3 (full board)" do
+      before { @game.generate_pieces }
       it "should move the knight to a3" do
         b1_knight = @game.board.board[8][2]
         allow(@game).to receive(:gets).and_return("a3\n", "Y\n")
@@ -250,17 +247,18 @@ RSpec.describe Chess do
       end
     end
 
-    context "Player moves d8 queen to h4" do
+    context "Player moves d8 queen to h4 (empty board)" do
       it "should move the queen to h4" do
-        d8_queen = @game.board.board[1][4]
-        @game.board.board[2][5] = " "
+        d8_queen = Queen.new(:black, [1,4])
+        @game.board.board[1][4] = d8_queen
         allow(@game).to receive(:gets).and_return("h4\n", "Y\n")
         @game.move_piece("d8", d8_queen)
         expect(@game.board.board[5][8].is_a?(Queen)).to be true
       end
     end
 
-    context "Player changes mind about moving piece to a spot" do
+    context "Player changes mind about moving piece to a spot (full board)" do
+      before { @game.generate_pieces }
       it "should move the piece to second spot" do
         g7_pawn = @game.board.board[2][7]
         allow(@game).to receive(:gets).and_return("g6\n", "N\n", "g5\n", "Y\n")
