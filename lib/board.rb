@@ -2,6 +2,7 @@ require_relative 'piece.rb'
 
 class Board
   attr_accessor :board
+  attr_reader :captured_pieces
   ROWS = 10
   COLUMNS = 10
   DOTS = "\u2237"
@@ -21,6 +22,10 @@ class Board
       [1, " ", DOTS, " ", DOTS, " ", DOTS, " ", DOTS, 1],
       [" ", "a", "b", "c", "d", "e", "f", "g", "h", " "]
     ]
+    @captured_pieces = {
+      white: [],
+      black: []
+    }
   end
 
   def print_board
@@ -66,12 +71,24 @@ class Board
   def move_piece(square1, square2)
     curr_pos = square_to_xy(square1[0], square1[1].to_i)
     next_pos = square_to_xy(square2[0], square2[1].to_i)
-    curr_piece = @board[curr_pos[0]][curr_pos[1]]
-    @board[next_pos[0]][next_pos[1]] = curr_piece
-    curr_piece.update_piece(next_pos)
+    piece = @board[curr_pos[0]][curr_pos[1]]
+    new_square = @board[next_pos[0]][next_pos[1]]
+    if new_square.is_a?(String)
+      puts "#{piece.color.capitalize} #{piece.type} moves from #{square1} to #{square2}"
+    else
+      capture_piece(piece, new_square, square2)
+    end
+    @board[next_pos[0]][next_pos[1]] = piece
+    piece.update_piece(next_pos)
     update_old_spot(curr_pos[0], curr_pos[1])
   end
   
+  def capture_piece(piece, captured_piece, square)
+    @captured_pieces[captured_piece.color] << captured_piece
+    print "#{piece.color.capitalize} #{piece.type} captures "
+    puts "#{captured_piece.color} #{captured_piece.type} on #{square}!"
+  end
+
   def update_old_spot(row, col)
     sum = row + col
     if sum.odd?

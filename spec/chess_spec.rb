@@ -291,5 +291,24 @@ RSpec.describe Chess do
         expect(@game.board.board[4][7].is_a?(Pawn)).to be true
       end
     end
+
+    context "Bishop captures enemy knight " do
+      before do
+        c8_bishop = Bishop.new(:black, [1,3])
+        knight = Knight.new(:white, [8,7])
+        @game.board.board[1][3] = c8_bishop
+        @game.board.board[4][6] = knight
+        allow(@game).to receive(:gets).and_return("f5\n", "Y\n")
+        @game.move_piece("c8", c8_bishop)
+      end
+
+      it "should have the Bishop in the enemy's spot" do
+        expect(@game.board.board[4][6].is_a?(Bishop)).to be true
+      end
+      
+      it "should add the knight to the captured_pieces hash" do
+        expect(@game.board.captured_pieces[:white].length).to be 1
+      end
+    end
   end
 end

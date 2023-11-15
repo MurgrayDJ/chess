@@ -61,7 +61,6 @@ class Chess
       move_confirmed = confirm_choice?(confirmation)
     end
     @board.move_piece(old_square, new_square)
-    puts "#{piece.color.capitalize} #{piece.type} moves from #{old_square} to #{new_square}"
   end
 
   def show_user_moves(piece, moves)
