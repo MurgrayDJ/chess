@@ -236,6 +236,19 @@ RSpec.describe Chess do
     end
   end
 
+  describe "#show_user_moves" do
+    context "Bishop move attempt with enemy knight in way" do
+      it "should not include the spaces after that piece" do
+        c8_bishop = Bishop.new(:black, [1,3])
+        knight = Knight.new(:white, [8,7])
+        @game.board.board[1][3] = c8_bishop
+        @game.board.board[4][6] = knight
+        moves = @game.board.check_surroundings(c8_bishop, c8_bishop.get_moves)
+        expect(@game.show_user_moves(c8_bishop, moves)).to match_array(["b7","a6","d7","e6","f5"])
+      end
+    end
+  end
+
   describe "#move_piece" do 
     context "Player moves b1 knight to a3 (full board)" do
       before { @game.generate_pieces }
@@ -257,9 +270,21 @@ RSpec.describe Chess do
       end
     end
 
-    context "Player changes mind about moving piece to a spot (full board)" do
+    context "Player moves rook (pawn is in front)" do
+      it "should move the rook all the way to the left" do
+        h1_rook = Rook.new(:white, [8,8])
+        h2_pawn = Pawn.new(:white, [7,8])
+        @game.board.board[8][8] = h1_rook
+        @game.board.board[7][8] = h2_pawn
+        allow(@game).to receive(:gets).and_return("a1\n", "Y\n")
+        @game.move_piece("h1", h1_rook)
+        expect(@game.board.board[8][1].is_a?(Rook)).to be true
+      end
+    end
+
+    context "Player changes mind about moving pawn to a spot (full board)" do
       before { @game.generate_pieces }
-      it "should move the piece to second spot" do
+      it "should move the pawn to second spot" do
         g7_pawn = @game.board.board[2][7]
         allow(@game).to receive(:gets).and_return("g6\n", "N\n", "g5\n", "Y\n")
         @game.move_piece("g7", g7_pawn)
