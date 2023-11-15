@@ -56,7 +56,7 @@ class Chess
     move_confirmed = false
     until move_confirmed
       prompt = "Enter one of the above squares to move: "
-      new_square = get_valid_data(prompt, nil, converted_moves.map{|move| move.upcase}).downcase
+      new_square = get_valid_data(prompt, nil, converted_moves.map{|move| move.upcase})
       confirmation = "Confirm moving #{piece.type} to #{new_square}? (Y/N): "
       move_confirmed = confirm_choice?(confirmation)
     end
@@ -77,7 +77,7 @@ class Chess
 
   def confirm_choice?(confirmation)
     response = get_valid_data(confirmation, nil, ["Y", "N"])
-    if response == "Y"
+    if response.casecmp?("Y")
       true 
     else
       false
@@ -207,19 +207,13 @@ class Chess
   end
 
   def get_names(player_num)
-    name = nil
-    while name.nil?
-      name = confirm_name(player_num)
+    name_confirmed = false
+    until name_confirmed
+      print "Player #{player_num} name: "
+      name = gets.chomp
+      confirmation = "Confirm name #{name}? (Y/N): "
+      name_confirmed = confirm_choice?(confirmation)
     end
-    name
-  end
-
-  def confirm_name(player_num)
-    print "Player #{player_num} name: "
-    name = gets.chomp
-    confirmation = "Confirm name #{name}? (Y/N): "
-    response = get_valid_data(confirmation, nil, ["Y", "N"])
-    if response == "N" then name = nil end
     name
   end
 
@@ -228,9 +222,8 @@ class Chess
       print prompt
       response = gets.chomp
     else
-      response = response.upcase
       valid_responses.each do |valid_response|
-        if response == valid_response
+        if response.casecmp?(valid_response)
           return response
         elsif response == "EXIT"
           puts "Thank you for playing!"
