@@ -48,21 +48,6 @@ This bishop can be moved to: d7 e6 f5 b7 a6
 Enter one of the above squares to move: Confirm moving bishop to f5? (Y/N): Black bishop captures white knight on f5!
 This bishop can be moved to: d7 e6 f5 b7 a6
 Enter one of the above squares to move: Confirm moving bishop to f5? (Y/N): Black bishop captures white knight on f5!
-Pawn promotion available! Pawn can be promoted to a queen,
-      rook, bishop, or knight. 
-Select a piece type to upgrade to: Confirm promoting pawn to queen? (Y/N):  ___    ________________________________   ___ 
-|   |  | a | b | c | d | e | f | g | h |  |   | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
- ___    ________________________________   ___ 
-| 8 |  | ∷ |   | ∷ | ♛ | ∷ |   | ∷ |   |  | 8 | 
-| 7 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 7 | 
-| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
-| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
-| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
-| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
-| 2 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 2 | 
-| 1 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 1 | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
- ___    ________________________________   ___ 
-|   |  | a | b | c | d | e | f | g | h |  |   | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+Pawn promotion available! Pawn can be promoted to a queen, rook, bishop, or knight. 
+Select a piece type to upgrade to: Confirm promoting pawn to queen? (Y/N): Pawn promotion available! Pawn can be promoted to a queen, rook, bishop, or knight. 
+Select a piece type to upgrade to: Confirm promoting pawn to knight? (Y/N): 

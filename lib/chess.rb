@@ -67,8 +67,7 @@ class Chess
   def promotion(pawn, new_square)
     if (pawn.color == :black && new_square[1] == "1") || 
       (pawn.color == :white && new_square[1] == "8")
-      puts "Pawn promotion available! Pawn can be promoted to a queen,
-      rook, bishop, or knight. "
+      puts "Pawn promotion available! Pawn can be promoted to a queen, rook, bishop, or knight. "
       promo_confirmed = false
       until promo_confirmed
         prompt = "Select a piece type to upgrade to: "

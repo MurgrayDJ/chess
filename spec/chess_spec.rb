@@ -320,8 +320,28 @@ RSpec.describe Chess do
         @game.board.board[1][4] = d2_pawn
         allow(@game).to receive(:gets).and_return("queen\n", "Y\n")
         @game.promotion(d2_pawn, "d8")
-        @game.board.print_board
         expect(@game.board.board[1][4].is_a?(Queen)).to be true
+      end
+    end
+
+    context "Black pawn makes it to b1" do
+      it "should let the player upgrade it to a Knight" do
+        b7_pawn = Pawn.new(:black, [2,2])
+        b7_pawn.current_pos = [8,2]
+        @game.board.board[8][2] = b7_pawn
+        allow(@game).to receive(:gets).and_return("knight\n", "Y\n")
+        @game.promotion(b7_pawn, "b1")
+        expect(@game.board.board[8][2].is_a?(Knight)).to be true
+      end
+    end
+
+    context "White pawn moves to e4" do
+      it "should do nothing" do
+        e2_pawn = Pawn.new(:white, [7,5])
+        e2_pawn.current_pos = [5,5]
+        @game.board.board[5][5] = e2_pawn
+        @game.promotion(e2_pawn, "e4")
+        expect(@game.board.board[5][5].is_a?(Pawn)).to be true
       end
     end
   end
