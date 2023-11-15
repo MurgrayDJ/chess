@@ -61,6 +61,28 @@ class Chess
       move_confirmed = confirm_choice?(confirmation)
     end
     @board.move_piece(old_square, new_square)
+    if piece.is_a?(Pawn) then promotion(piece, new_square) end
+  end
+
+  def promotion(pawn, new_square)
+    if (pawn.color == :black && new_square[1] == "1") || 
+      (pawn.color == :white && new_square[1] == "8")
+      puts "Pawn promotion available! Pawn can be promoted to a queen,
+      rook, bishop, or knight. "
+      promo_confirmed = false
+      until promo_confirmed
+        prompt = "Select a piece type to upgrade to: "
+        new_piece_type = get_valid_data(prompt, nil, ["queen", "rook", "bishop", "knight"])
+        confirmation = "Confirm promoting pawn to #{new_piece_type}? (Y/N): "
+        promo_confirmed = confirm_choice?(confirmation)
+      end
+      promote_pawn(pawn, new_piece_type.capitalize)
+    end
+  end
+
+  def promote_pawn(pawn, new_piece_type)
+    new_piece = Object.const_get(new_piece_type).new(pawn.color, pawn.start_pos)
+    @board.board[pawn.current_pos[0]][pawn.current_pos[1]] = new_piece
   end
 
   def show_user_moves(piece, moves)

@@ -311,4 +311,18 @@ RSpec.describe Chess do
       end
     end
   end
+
+  describe "#promotion" do
+    context "White pawn makes it to d8" do
+      it "should let the user upgrade it to a Queen" do
+        d2_pawn = Pawn.new(:white, [7,4])
+        d2_pawn.current_pos = [1,4]
+        @game.board.board[1][4] = d2_pawn
+        allow(@game).to receive(:gets).and_return("queen\n", "Y\n")
+        @game.promotion(d2_pawn, "d8")
+        @game.board.print_board
+        expect(@game.board.board[1][4].is_a?(Queen)).to be true
+      end
+    end
+  end
 end
