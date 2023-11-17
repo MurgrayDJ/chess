@@ -50,22 +50,8 @@ This bishop can be moved to: d7 e6 f5 b7 a6
 Enter one of the above squares to move: Confirm moving bishop to f5? (Y/N): Black bishop captures white knight on f5!
 Pawn promotion available! Pawn can be promoted to a queen, arook, bishop, or knight. 
 Select a piece type to upgrade to: Confirm promoting pawn to queen? (Y/N): Pawn promotion available! Pawn can be promoted to a queen, arook, bishop, or knight. 
-Select a piece type to upgrade to: Confirm promoting pawn to knight? (Y/N):  ___    ________________________________   ___ 
-|   |  | a | b | c | d | e | f | g | h |  |   | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
- ___    ________________________________   ___ 
-| 8 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 8 | 
-| 7 |  |   | ∷ |   | ∷ |   | ∷ | ♙ | ∷ |  | 7 | 
-| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
-| 5 |  |   | ∷ |   | ∷ |   | ♟ |   | ∷ |  | 5 | 
-| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
-| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
-| 2 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 2 | 
-| 1 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 1 | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
- ___    ________________________________   ___ 
-|   |  | a | b | c | d | e | f | g | h |  |   | 
- ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+Select a piece type to upgrade to: Confirm promoting pawn to knight? (Y/N): This pawn can be moved to: g6 g5
+Enter one of the above squares to move: Confirm moving pawn to g5? (Y/N): Black pawn moves from g7 to g5
 This pawn can be moved to: g6 g5
 Enter one of the above squares to move: Confirm moving pawn to g5? (Y/N): Black pawn moves from g7 to g5
  ___    ________________________________   ___ 
@@ -75,8 +61,60 @@ Enter one of the above squares to move: Confirm moving pawn to g5? (Y/N): Black 
 | 8 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 8 | 
 | 7 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 7 | 
 | 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
-| 5 |  |   | ∷ |   | ∷ |   | ♟ | ♙ | ∷ |  | 5 | 
-| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ | ♙ | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ∷ |   | ♟ |   | ∷ |   | ∷ |   |  | 2 | 
+| 1 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+This pawn can be moved to: c3 c4
+Enter one of the above squares to move: Confirm moving pawn to c4? (Y/N): White pawn moves from c2 to c4
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 8 | 
+| 7 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ | ♙ | ♟ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 2 | 
+| 1 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 8 | 
+| 7 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ∷ | ♙ | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ∷ |   | ♟ |   | ∷ |   | ∷ |   |  | 2 | 
+| 1 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+This pawn can be moved to: c3 c4
+Enter one of the above squares to move: Confirm moving pawn to c4? (Y/N): White pawn moves from c2 to c4
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 8 | 
+| 7 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ♟ | ♙ | ∷ |   | ∷ |   |  | 4 | 
 | 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
 | 2 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 2 | 
 | 1 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 1 | 
