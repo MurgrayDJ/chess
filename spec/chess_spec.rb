@@ -312,14 +312,14 @@ RSpec.describe Chess do
     end
   end
 
-  describe "#promotion" do
+  describe "#try_promotion" do
     context "White pawn makes it to d8" do
       it "should let the user upgrade it to a Queen" do
         d2_pawn = Pawn.new(:white, [7,4])
         d2_pawn.current_pos = [1,4]
         @game.board.board[1][4] = d2_pawn
         allow(@game).to receive(:gets).and_return("queen\n", "Y\n")
-        @game.promotion(d2_pawn, "d8")
+        @game.try_promotion(d2_pawn, "d8")
         expect(@game.board.board[1][4].is_a?(Queen)).to be true
       end
     end
@@ -330,7 +330,7 @@ RSpec.describe Chess do
         b7_pawn.current_pos = [8,2]
         @game.board.board[8][2] = b7_pawn
         allow(@game).to receive(:gets).and_return("knight\n", "Y\n")
-        @game.promotion(b7_pawn, "b1")
+        @game.try_promotion(b7_pawn, "b1")
         expect(@game.board.board[8][2].is_a?(Knight)).to be true
       end
     end
@@ -340,9 +340,25 @@ RSpec.describe Chess do
         e2_pawn = Pawn.new(:white, [7,5])
         e2_pawn.current_pos = [5,5]
         @game.board.board[5][5] = e2_pawn
-        @game.promotion(e2_pawn, "e4")
+        @game.try_promotion(e2_pawn, "e4")
         expect(@game.board.board[5][5].is_a?(Pawn)).to be true
       end
     end
+  end
+
+  describe "#mark_en_passant" do
+   context "Pawn makes another pawn eligible for en_passant" do
+    it "should mark the pawn eligible" do
+      g7_pawn = Pawn.new(:black, [2,7])
+      f2_pawn = Pawn.new(:white, [7,6])
+      @game.board.board[2][7] = g7_pawn #g7
+      @game.board.board[4][6] = f2_pawn #f5
+      @game.board.print_board
+      allow(@game).to receive(:gets).and_return("g5\n", "Y\n")
+      @game.move_piece("g7", g7_pawn)
+      @game.board.print_board
+      expect(f2_pawn.en_passant_available).to be true
+    end
+   end
   end
 end

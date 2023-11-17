@@ -61,13 +61,30 @@ class Chess
       move_confirmed = confirm_choice?(confirmation)
     end
     @board.move_piece(old_square, new_square)
-    if piece.is_a?(Pawn) then promotion(piece, new_square) end
+    if piece.is_a?(Pawn) 
+      mark_en_passant(piece)
+      try_promotion(piece, new_square) 
+    end
   end
 
-  def promotion(pawn, new_square)
+  def mark_en_passant(pawn)
+    old_spot = pawn.start_pos
+    new_spot = pawn.current_pos
+    right_square = @board.board[new_spot[0]][new_spot[1] + 1]
+    left_square = @board.board[new_spot[0]][new_spot[1] - 1]
+    if ((old_spot[0] - new_spot[0]).abs == 2)
+      if right_square.is_a?(Pawn)
+        right_square.en_passant_update(:right)
+      elsif left_square.is_a?(Pawn)
+        left_square.en_passant_update(:left)
+      end
+    end
+  end
+
+  def try_promotion(pawn, new_square)
     if (pawn.color == :black && new_square[1] == "1") || 
       (pawn.color == :white && new_square[1] == "8")
-      puts "Pawn promotion available! Pawn can be promoted to a queen, rook, bishop, or knight. "
+      puts "Pawn promotion available! Pawn can be promoted to a queen, arook, bishop, or knight. "
       promo_confirmed = false
       until promo_confirmed
         prompt = "Select a piece type to upgrade to: "
