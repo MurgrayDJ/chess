@@ -27,11 +27,11 @@ class Chess
   end
 
   def play_round
-    player_moves(@player1, "\u265A")
-    player_moves(@player2, "\u2654")
+    player_turn(@player1, "\u265A")
+    player_turn(@player2, "\u2654")
   end
 
-  def player_moves(player, king_sym)
+  def player_turn(player, king_sym)
     print "#{king_sym} #{player.name}'s turn #{king_sym}"
     print "#{player.name}, choose the square of the piece to move: "
     square = gets.chomp

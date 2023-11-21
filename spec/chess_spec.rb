@@ -182,7 +182,7 @@ RSpec.describe Chess do
     end
   end
 
-  describe "#player_moves" do
+  describe "#player_turn" do
     before { @game.generate_pieces }
     player1 = Player.new("Zari", :white)
     player2 = Player.new("Lily", :black)
@@ -191,7 +191,7 @@ RSpec.describe Chess do
       it "should call the move_piece method" do
         allow(@game).to receive(:gets).and_return("c2\n", "Y\n")
         expect(@game).to receive(:move_piece)
-        @game.player_moves(player1, "\u265A")
+        @game.player_turn(player1, "\u265A")
       end
     end
 
@@ -199,7 +199,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("d2\n", "f7\n", "Y\n")
         expect(@game).to receive(:move_piece)
-        @game.player_moves(player2, "\u2654")
+        @game.player_turn(player2, "\u2654")
       end
     end
 
@@ -207,7 +207,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("g5\n", "h2\n", "Y\n")
         expect(@game).to receive(:move_piece)
-        @game.player_moves(player1, "\u265A")
+        @game.player_turn(player1, "\u265A")
       end
     end
 
@@ -215,7 +215,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("e1\n", "g1\n", "Y\n")
         expect(@game).to receive(:move_piece)
-        @game.player_moves(player1, "\u265A")
+        @game.player_turn(player1, "\u265A")
       end
     end
 
@@ -223,7 +223,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("d1\n", "b1\n", "Y\n")
         expect(@game).to receive(:move_piece)
-        @game.player_moves(player1, "\u265A")
+        @game.player_turn(player1, "\u265A")
       end
     end
 
@@ -231,7 +231,7 @@ RSpec.describe Chess do
       it "won't move on until they enter the fourth valid one" do
         allow(@game).to receive(:gets).and_return("b1\n", "c6\n", "banana\n", "e7\n", "Y\n")
         expect(@game).to receive(:move_piece)
-        @game.player_moves(player2, "\u2654")
+        @game.player_turn(player2, "\u2654")
       end
     end
   end
@@ -347,56 +347,56 @@ RSpec.describe Chess do
   end
 
   describe "#mark_en_passant" do
-   context "black pawn makes left white pawn eligible for en_passant" do
-    it "should mark left white pawn eligible" do
-      g7_pawn = Pawn.new(:black, [2,7])
-      f2_pawn = Pawn.new(:white, [7,6])
-      @game.board.board[2][7] = g7_pawn #g7
-      @game.board.board[4][6] = f2_pawn #f5
-      allow(@game).to receive(:gets).and_return("g5\n", "Y\n")
-      @game.move_piece("g7", g7_pawn)
-      expect(f2_pawn.en_passant_available).to be true
+    context "black pawn makes left white pawn eligible for en_passant" do
+      it "should mark left white pawn eligible" do
+        g7_pawn = Pawn.new(:black, [2,7])
+        f2_pawn = Pawn.new(:white, [7,6])
+        @game.board.board[2][7] = g7_pawn #g7
+        @game.board.board[4][6] = f2_pawn #f5
+        allow(@game).to receive(:gets).and_return("g5\n", "Y\n")
+        @game.move_piece("g7", g7_pawn)
+        expect(f2_pawn.en_passant_available).to be true
+      end
     end
-   end
 
-   context "black pawn makes right white pawn eligible for en_passant" do
-    it "should mark right white pawn eligible" do
-      g7_pawn = Pawn.new(:black, [2,7])
-      h2_pawn = Pawn.new(:white, [7,8])
-      @game.board.board[2][7] = g7_pawn #g7
-      @game.board.board[4][8] = h2_pawn #h5
-      allow(@game).to receive(:gets).and_return("g5\n", "Y\n")
-      @game.move_piece("g7", g7_pawn)
-      expect(h2_pawn.en_passant_available).to be true
+    context "black pawn makes right white pawn eligible for en_passant" do
+      it "should mark right white pawn eligible" do
+        g7_pawn = Pawn.new(:black, [2,7])
+        h2_pawn = Pawn.new(:white, [7,8])
+        @game.board.board[2][7] = g7_pawn #g7
+        @game.board.board[4][8] = h2_pawn #h5
+        allow(@game).to receive(:gets).and_return("g5\n", "Y\n")
+        @game.move_piece("g7", g7_pawn)
+        expect(h2_pawn.en_passant_available).to be true
+      end
     end
-   end
 
-   context "white pawn makes left black pawn eligible for en_passant" do
-    it "should mark left black pawn eligible" do
-      c2_pawn = Pawn.new(:white, [7,3])
-      b7_pawn = Pawn.new(:black, [2,2])
-      @game.board.board[7][3] = c2_pawn #c2
-      @game.board.board[5][2] = b7_pawn #b4
-      @game.board.print_board
-      allow(@game).to receive(:gets).and_return("c4\n", "Y\n")
-      @game.move_piece("c2", c2_pawn)
-      @game.board.print_board
-      expect(b7_pawn.en_passant_available).to be true
+    context "white pawn makes left black pawn eligible for en_passant" do
+      it "should mark left black pawn eligible" do
+        c2_pawn = Pawn.new(:white, [7,3])
+        b7_pawn = Pawn.new(:black, [2,2])
+        @game.board.board[7][3] = c2_pawn #c2
+        @game.board.board[5][2] = b7_pawn #b4
+        @game.board.print_board
+        allow(@game).to receive(:gets).and_return("c4\n", "Y\n")
+        @game.move_piece("c2", c2_pawn)
+        @game.board.print_board
+        expect(b7_pawn.en_passant_available).to be true
+      end
     end
-   end
 
-   context "white pawn makes right black pawn eligible for en_passant" do
-    it "should mark right black pawn eligible" do
-      c2_pawn = Pawn.new(:white, [7,3])
-      d7_pawn = Pawn.new(:black, [2,4])
-      @game.board.board[7][3] = c2_pawn #c2
-      @game.board.board[5][4] = d7_pawn #d4
-      @game.board.print_board
-      allow(@game).to receive(:gets).and_return("c4\n", "Y\n")
-      @game.move_piece("c2", c2_pawn)
-      @game.board.print_board
-      expect(d7_pawn.en_passant_available).to be true
+    context "white pawn makes right black pawn eligible for en_passant" do
+      it "should mark right black pawn eligible" do
+        c2_pawn = Pawn.new(:white, [7,3])
+        d7_pawn = Pawn.new(:black, [2,4])
+        @game.board.board[7][3] = c2_pawn #c2
+        @game.board.board[5][4] = d7_pawn #d4
+        @game.board.print_board
+        allow(@game).to receive(:gets).and_return("c4\n", "Y\n")
+        @game.move_piece("c2", c2_pawn)
+        @game.board.print_board
+        expect(d7_pawn.en_passant_available).to be true
+      end
     end
-   end
   end
 end
