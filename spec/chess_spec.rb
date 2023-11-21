@@ -188,9 +188,9 @@ RSpec.describe Chess do
     player2 = Player.new("Lily", :black)
 
     context "Player tries to move their own pawn" do
-      it "should call the move_piece method" do
+      it "should call the make_move method" do
         allow(@game).to receive(:gets).and_return("c2\n", "Y\n")
-        expect(@game).to receive(:move_piece)
+        expect(@game).to receive(:make_move)
         @game.player_turn(player1, "\u265A")
       end
     end
@@ -198,7 +198,7 @@ RSpec.describe Chess do
     context "Player tries to move another player's piece" do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("d2\n", "f7\n", "Y\n")
-        expect(@game).to receive(:move_piece)
+        expect(@game).to receive(:make_move)
         @game.player_turn(player2, "\u2654")
       end
     end
@@ -206,7 +206,7 @@ RSpec.describe Chess do
     context "Player tries to enter empty square" do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("g5\n", "h2\n", "Y\n")
-        expect(@game).to receive(:move_piece)
+        expect(@game).to receive(:make_move)
         @game.player_turn(player1, "\u265A")
       end
     end
@@ -214,7 +214,7 @@ RSpec.describe Chess do
     context "Player tries to move trapped king" do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("e1\n", "g1\n", "Y\n")
-        expect(@game).to receive(:move_piece)
+        expect(@game).to receive(:make_move)
         @game.player_turn(player1, "\u265A")
       end
     end
@@ -222,7 +222,7 @@ RSpec.describe Chess do
     context "Player tries to move trapped queen" do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("d1\n", "b1\n", "Y\n")
-        expect(@game).to receive(:move_piece)
+        expect(@game).to receive(:make_move)
         @game.player_turn(player1, "\u265A")
       end
     end
@@ -230,7 +230,7 @@ RSpec.describe Chess do
     context "Player tries 3 invalid squares" do
       it "won't move on until they enter the fourth valid one" do
         allow(@game).to receive(:gets).and_return("b1\n", "c6\n", "banana\n", "e7\n", "Y\n")
-        expect(@game).to receive(:move_piece)
+        expect(@game).to receive(:make_move)
         @game.player_turn(player2, "\u2654")
       end
     end
@@ -249,13 +249,13 @@ RSpec.describe Chess do
     end
   end
 
-  describe "#move_piece" do 
+  describe "#make_move" do 
     context "Player moves b1 knight to a3 (full board)" do
       before { @game.generate_pieces }
       it "should move the knight to a3" do
         b1_knight = @game.board.board[8][2]
         allow(@game).to receive(:gets).and_return("a3\n", "Y\n")
-        @game.move_piece("b1", b1_knight)
+        @game.make_move("b1", b1_knight)
         expect(@game.board.board[6][1].is_a?(Knight)).to be true
       end
     end
@@ -265,7 +265,7 @@ RSpec.describe Chess do
         d8_queen = Queen.new(:black, [1,4])
         @game.board.board[1][4] = d8_queen
         allow(@game).to receive(:gets).and_return("h4\n", "Y\n")
-        @game.move_piece("d8", d8_queen)
+        @game.make_move("d8", d8_queen)
         expect(@game.board.board[5][8].is_a?(Queen)).to be true
       end
     end
@@ -277,7 +277,7 @@ RSpec.describe Chess do
         @game.board.board[8][8] = h1_rook
         @game.board.board[7][8] = h2_pawn
         allow(@game).to receive(:gets).and_return("a1\n", "Y\n")
-        @game.move_piece("h1", h1_rook)
+        @game.make_move("h1", h1_rook)
         expect(@game.board.board[8][1].is_a?(Rook)).to be true
       end
     end
@@ -287,7 +287,7 @@ RSpec.describe Chess do
       it "should move the pawn to second spot" do
         g7_pawn = @game.board.board[2][7]
         allow(@game).to receive(:gets).and_return("g6\n", "N\n", "g5\n", "Y\n")
-        @game.move_piece("g7", g7_pawn)
+        @game.make_move("g7", g7_pawn)
         expect(@game.board.board[4][7].is_a?(Pawn)).to be true
       end
     end
@@ -299,7 +299,7 @@ RSpec.describe Chess do
         @game.board.board[1][3] = c8_bishop
         @game.board.board[4][6] = knight
         allow(@game).to receive(:gets).and_return("f5\n", "Y\n")
-        @game.move_piece("c8", c8_bishop)
+        @game.make_move("c8", c8_bishop)
       end
 
       it "should have the Bishop in the enemy's spot" do
@@ -354,7 +354,7 @@ RSpec.describe Chess do
         @game.board.board[2][7] = g7_pawn #g7
         @game.board.board[4][6] = f2_pawn #f5
         allow(@game).to receive(:gets).and_return("g5\n", "Y\n")
-        @game.move_piece("g7", g7_pawn)
+        @game.make_move("g7", g7_pawn)
         expect(f2_pawn.en_passant_available).to be true
       end
     end
@@ -366,7 +366,7 @@ RSpec.describe Chess do
         @game.board.board[2][7] = g7_pawn #g7
         @game.board.board[4][8] = h2_pawn #h5
         allow(@game).to receive(:gets).and_return("g5\n", "Y\n")
-        @game.move_piece("g7", g7_pawn)
+        @game.make_move("g7", g7_pawn)
         expect(h2_pawn.en_passant_available).to be true
       end
     end
@@ -379,7 +379,7 @@ RSpec.describe Chess do
         @game.board.board[5][2] = b7_pawn #b4
         @game.board.print_board
         allow(@game).to receive(:gets).and_return("c4\n", "Y\n")
-        @game.move_piece("c2", c2_pawn)
+        @game.make_move("c2", c2_pawn)
         @game.board.print_board
         expect(b7_pawn.en_passant_available).to be true
       end
@@ -393,7 +393,7 @@ RSpec.describe Chess do
         @game.board.board[5][4] = d7_pawn #d4
         @game.board.print_board
         allow(@game).to receive(:gets).and_return("c4\n", "Y\n")
-        @game.move_piece("c2", c2_pawn)
+        @game.make_move("c2", c2_pawn)
         @game.board.print_board
         expect(d7_pawn.en_passant_available).to be true
       end

@@ -47,10 +47,10 @@ class Chess
         square = ''
       end
     end
-    move_piece(square, square_val)
+    make_move(square, square_val)
   end
 
-  def move_piece(old_square, piece)
+  def make_move(old_square, piece)
     moves = @board.check_surroundings(piece, piece.get_moves)
     converted_moves = show_user_moves(piece, moves)
     move_confirmed = false
