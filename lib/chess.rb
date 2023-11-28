@@ -23,7 +23,15 @@ class Chess
   end
 
   def play_game
-    play_round
+    until game_over?
+      play_round
+    end
+  end
+
+  def game_over?
+    #checkmate
+    #player quits
+    #draw
   end
 
   def play_round
