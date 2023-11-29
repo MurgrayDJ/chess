@@ -6,9 +6,11 @@ class Chess
   attr_accessor :board
   attr_accessor :player1
   attr_accessor :player2
+  attr_accessor :round
   DOTS = "\u2237"
   
   def initialize
+    @round = 0
     @board = Board.new()
     @player1 = Player.new("player1", :white)
     @player2 = Player.new("player2", :black)
@@ -24,6 +26,7 @@ class Chess
 
   def play_game
     until game_over?
+      @round++
       play_round
     end
   end
