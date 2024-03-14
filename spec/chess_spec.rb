@@ -398,5 +398,17 @@ RSpec.describe Chess do
         expect(d7_pawn.en_passant_available).to be true
       end
     end
+
+    context "white pawn correctly not marked eligible for en_passant" do
+      it "should not mark the white pawn eligible" do
+        g7_pawn = Pawn.new(:black, [2,7])
+        f2_pawn = Pawn.new(:white, [7,6])
+        @game.board.board[2][7] = g7_pawn #g7
+        @game.board.board[4][6] = f2_pawn #f5
+        allow(@game).to receive(:gets).and_return("g6\n", "Y\n")
+        @game.make_move("g7", g7_pawn)
+        expect(f2_pawn.en_passant_available).to be false
+      end
+    end
   end
 end
