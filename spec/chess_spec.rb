@@ -6,6 +6,8 @@ RSpec.describe Chess do
   before { @game = described_class.new }
   DOTS = "\u2237"
 
+
+  # --------PRINT TITLE---------
   describe "#print_title" do
     context "title is printed surrounded by dots for flare" do
       it "should print the title" do
@@ -14,6 +16,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------PRINT RULES---------
   describe "#print_rules" do
     context "rules are printed with dots for bullet points" do
       it "should print the rules" do
@@ -23,6 +27,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------GET NAMES---------
   describe '#get_names' do
     context 'player1 enters name then confirms it' do
       it 'should return the player 1 name' do
@@ -47,6 +53,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------GENERATE PAWNS---------
   describe "#generate_pawns" do
     context 'Generates pawns for players' do
       before do 
@@ -68,6 +76,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------GENERATE NOBLE PIECES---------
   describe "#generate_noble_pieces" do
     context 'generate pieces for black' do
       before { @game.generate_noble_pieces(:black, 1, 8) }
@@ -84,6 +94,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------GENERATE PIECES---------
   describe "#generate_pieces" do
     before { @game.generate_pieces }
     context "generate all the board pieces" do
@@ -94,6 +106,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------GET SQUARE---------
   describe "#get_square" do
     context "player enters correctly formatted square (h3)" do
       it "should return the square (h3)" do
@@ -131,6 +145,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------GET SQUARE VAL---------
   describe "#get_square_val" do
     before { @game.generate_pieces }
     context "there is a piece on square b1" do
@@ -156,6 +172,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------RIGHT COLOR---------
   describe "#right_color?" do
     player1 = Player.new("Zari", :white)
     player2 = Player.new("Lily", :black)
@@ -182,6 +200,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------PLAYER TURN---------
   describe "#player_turn" do
     before { @game.generate_pieces }
     player1 = Player.new("Zari", :white)
@@ -236,6 +256,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------SHOW USER MOVES---------
   describe "#show_user_moves" do
     context "Bishop move attempt with enemy knight in way" do
       it "should not include the spaces after that piece" do
@@ -249,6 +271,7 @@ RSpec.describe Chess do
     end
   end
 
+  # --------MAKE MOVE---------
   describe "#make_move" do 
     context "Player moves b1 knight to a3 (full board)" do
       before { @game.generate_pieces }
@@ -310,8 +333,29 @@ RSpec.describe Chess do
         expect(@game.board.captured_pieces[:white].length).to be 1
       end
     end
+
+    context "White pawn captures black pawn in en_passant" do
+      before do 
+        g7_pawn = Pawn.new(:black, [2,7])
+        f2_pawn = Pawn.new(:white, [7,6])
+        @game.board.board[2][7] = g7_pawn #g7
+        @game.board.board[4][6] = f2_pawn #f5
+        f2_pawn.current_pos = [4,6]
+        @game.board.print_board
+        allow(@game).to receive(:gets).and_return("g5\n", "Y\n", "g6\n", "Y\n")
+        @game.make_move("g7", g7_pawn)
+        @game.board.print_board
+        @game.make_move("f5", f2_pawn)
+        @game.board.print_board
+      end
+
+      it "should have the white pawn in f4" do
+        expect(@game.board.board[3][7].color).to eq(:white)
+      end
+    end
   end
 
+  # --------TRY PROMOTION---------
   describe "#try_promotion" do
     context "White pawn makes it to d8" do
       it "should let the user upgrade it to a Queen" do
@@ -346,6 +390,8 @@ RSpec.describe Chess do
     end
   end
 
+
+  # --------MARK EN PASSANT---------
   describe "#mark_en_passant" do
     context "black pawn makes left white pawn eligible for en_passant" do
       it "should mark left white pawn eligible" do

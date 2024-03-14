@@ -28,15 +28,15 @@ class Pawn < Piece
     @en_passant_available = true
     if @color == :white
       if side == :right
-        @moves[:en_passant] = [1,1]
+        @moves[:en_passant] = [[-1,1]]
       else
-        @moves[:en_passant] = [1,-1]
+        @moves[:en_passant] = [[-1,-1]]
       end
     else
       if side == :right
-        @moves[:en_passant] = [-1,1]
+        @moves[:en_passant] = [[1,-1]]
       else
-        @moves[:en_passant] = [-1,-1]
+        @moves[:en_passant] = [[1,1]]
       end
     end
   end
