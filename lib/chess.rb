@@ -181,6 +181,7 @@ class Chess
 
   def get_square(square)
     until square.match?(/^[a-h]{1}[1-8]{1}$/i)
+      quit_or_help(square)
       print "Invalid square, try again: "
       square = gets.chomp
     end
@@ -221,7 +222,7 @@ class Chess
     puts "   piece you would like to move. (e.g., e2, f7)"
     puts " #{DOTS} Then enter the file then rank of the space you'd like to move your "
     puts "   piece to."
-    puts " #{DOTS} Type 'exit' to leave at any time."
+    puts " #{DOTS} Type 'exit' or 'quit' to leave at any time."
     puts " #{DOTS} Type 'help' at any time to repeat this message.\n\n"
     puts "#{DOTS} " * 21 
     puts
@@ -270,10 +271,20 @@ class Chess
     until name_confirmed
       print "Player #{player_num} name: "
       name = gets.chomp
+      quit_or_help(name)
       confirmation = "Confirm name #{name}? (Y/N): "
       name_confirmed = confirm_choice?(confirmation)
     end
     name
+  end
+
+  def quit_or_help(user_input)
+    if user_input.casecmp?("exit") || user_input.casecmp?("quit")
+      puts "Thank you for playing!"
+      exit!
+    elsif user_input.casecmp?("help")
+      print_rules
+    end
   end
 
   def get_valid_data(prompt, response, valid_responses) 
@@ -284,10 +295,10 @@ class Chess
       valid_responses.each do |valid_response|
         if response.casecmp?(valid_response)
           return response
-        elsif response == "EXIT"
+        elsif response.casecmp?("EXIT") || response.casecmp?("QUIT")
           puts "Thank you for playing!"
           exit!
-        elsif response == "HELP"
+        elsif response.casecmp?("HELP")
           print_rules
           break
         end
