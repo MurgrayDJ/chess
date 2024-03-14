@@ -62,6 +62,11 @@ class Chess
   end
 
   def make_move(old_square, piece)
+    if piece.is_a?(Pawn) &&
+      (piece.en_passant_round_start - @round) >= 2
+      piece.delete_en_passant
+    end
+
     moves = @board.check_surroundings(piece, piece.get_moves)
     converted_moves = show_user_moves(piece, moves)
     move_confirmed = false
@@ -85,9 +90,9 @@ class Chess
     left_square = @board.board[new_spot[0]][new_spot[1] - 1]
     if ((old_spot[0] - new_spot[0]).abs == 2)
       if right_square.is_a?(Pawn)
-        right_square.en_passant_update(:right)
+        right_square.en_passant_update(:right, @round)
       elsif left_square.is_a?(Pawn)
-        left_square.en_passant_update(:left)
+        left_square.en_passant_update(:left, @round)
       end
     end
   end

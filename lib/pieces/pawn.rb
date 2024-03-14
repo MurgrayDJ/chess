@@ -4,33 +4,39 @@ class Pawn < Piece
   attr_accessor :has_moved
   attr_accessor :moves
   attr_accessor :en_passant_available
+  attr_accessor :en_passant_round_start
 
   def initialize(color, start_pos)
     super(color, start_pos, :pawn)
     @has_moved = false
     @en_passant_available = false
+    @en_passant_round_start = -1
     set_symbol(color)
     set_moves(color)
   end
 
-  def en_passant_update(side)
+  def delete_en_passant
     if @en_passant_available 
       @en_passant_available = false
       @moves.delete(:en_passant)
-    else
-      @en_passant_available = true
-      if @color == :white
-        if side == :right
-          @moves[:en_passant] = [1,1]
-        else
-          @moves[:en_passant] = [1,-1]
-        end
+      @en_passant_round_start = nil
+    end
+  end
+
+  def en_passant_update(side, round)
+    @en_passant_round_start = round
+    @en_passant_available = true
+    if @color == :white
+      if side == :right
+        @moves[:en_passant] = [1,1]
       else
-        if side == :right
-          @moves[:en_passant] = [-1,1]
-        else
-          @moves[:en_passant] = [-1,-1]
-        end
+        @moves[:en_passant] = [1,-1]
+      end
+    else
+      if side == :right
+        @moves[:en_passant] = [-1,1]
+      else
+        @moves[:en_passant] = [-1,-1]
       end
     end
   end
