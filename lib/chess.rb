@@ -26,7 +26,7 @@ class Chess
 
   def play_game
     until game_over?
-      @round++
+      @round += 1
       play_round
     end
   end
@@ -43,7 +43,8 @@ class Chess
   end
 
   def player_turn(player, king_sym)
-    print "#{king_sym} #{player.name}'s turn #{king_sym}"
+    @board.print_board
+    puts "#{king_sym} #{player.name}'s turn #{king_sym}"
     print "#{player.name}, choose the square of the piece to move: "
     square = gets.chomp
     square_val = nil
@@ -297,5 +298,5 @@ class Chess
   end
 end
 
-# new_game = Chess.new()
-# new_game.run_game
+new_game = Chess.new()
+new_game.run_game

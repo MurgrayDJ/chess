@@ -97,8 +97,10 @@ class Board
   
   def capture_piece(piece, captured_piece, square)
     @captured_pieces[captured_piece.color] << captured_piece
+    puts "-----------------------------------------------------"
     print "#{piece.color.capitalize} #{piece.type} captures "
     puts "#{captured_piece.color} #{captured_piece.type} on #{square}!"
+    puts "-----------------------------------------------------"
   end
 
   def update_old_spot(row, col)
