@@ -72,11 +72,23 @@ class Board
     curr_pos = square_to_xy(square1[0], square1[1].to_i)
     next_pos = square_to_xy(square2[0], square2[1].to_i)
     piece = @board[curr_pos[0]][curr_pos[1]]
-    new_square = @board[next_pos[0]][next_pos[1]]
-    if new_square.is_a?(String)
-      puts "#{piece.color.capitalize} #{piece.type} moves from #{square1} to #{square2}"
+    new_square_val = @board[next_pos[0]][next_pos[1]]
+    if new_square_val.is_a?(String)
+      if piece.is_a?(Pawn) && piece.moves.has_key?(:en_passant)
+        if [curr_pos[0] + piece.moves[:en_passant][0][0], curr_pos[1] + piece.moves[:en_passant][0][1]] == next_pos
+          behind_square = [next_pos[0]+1, next_pos[1]]
+          if(piece.color == :black)
+            behind_square = [next_pos[0]-1, next_pos[1]]
+          end
+          behind_square_val = @board[behind_square[0]][behind_square[1]]
+          capture_piece(piece, behind_square_val, xy_to_square(behind_square))
+          update_old_spot(behind_square[0], behind_square[1])
+        end
+      else
+        puts "#{piece.color.capitalize} #{piece.type} moves from #{square1} to #{square2}"
+      end
     else
-      capture_piece(piece, new_square, square2)
+      capture_piece(piece, new_square_val, square2)
     end
     @board[next_pos[0]][next_pos[1]] = piece
     piece.update_piece(next_pos)

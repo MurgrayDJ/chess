@@ -66,7 +66,6 @@ class Chess
       (piece.en_passant_round_start - @round) >= 2
       piece.delete_en_passant
     end
-
     moves = @board.check_surroundings(piece, piece.get_moves)
     converted_moves = show_user_moves(piece, moves)
     move_confirmed = false

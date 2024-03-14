@@ -334,23 +334,45 @@ RSpec.describe Chess do
       end
     end
 
-    context "White pawn captures black pawn in en_passant" do
+    context "White pawn captures black pawn in en passant" do
       before do 
         g7_pawn = Pawn.new(:black, [2,7])
         f2_pawn = Pawn.new(:white, [7,6])
         @game.board.board[2][7] = g7_pawn #g7
         @game.board.board[4][6] = f2_pawn #f5
         f2_pawn.current_pos = [4,6]
-        @game.board.print_board
         allow(@game).to receive(:gets).and_return("g5\n", "Y\n", "g6\n", "Y\n")
         @game.make_move("g7", g7_pawn)
-        @game.board.print_board
         @game.make_move("f5", f2_pawn)
-        @game.board.print_board
       end
 
       it "should have the white pawn in f4" do
         expect(@game.board.board[3][7].color).to eq(:white)
+      end
+
+      it "should have nothing in f5" do
+        expect(@game.board.board[4][7].is_a?(String)).to be true
+      end
+    end
+
+    context "Black pawn captures white pawn in en passant" do
+      before do 
+        c2_pawn = Pawn.new(:white, [7,3])
+        b7_pawn = Pawn.new(:black, [2,2])
+        @game.board.board[7][3] = c2_pawn #c2
+        @game.board.board[5][2] = b7_pawn #b4
+        b7_pawn.current_pos = [5,2]
+        allow(@game).to receive(:gets).and_return("c4\n", "Y\n", "c3\n", "Y\n")
+        @game.make_move("c2", c2_pawn) #move to c4
+        @game.make_move("b4", b7_pawn) #move to c3
+      end
+
+      it "should have the black pawn in c3" do
+        expect(@game.board.board[6][3].color).to eq(:black)
+      end
+
+      it "should have nothing in c4" do
+        expect(@game.board.board[5][3].is_a?(String)).to be true
       end
     end
   end
