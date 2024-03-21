@@ -13,7 +13,7 @@ How to play:
    piece you would like to move. (e.g., e2, f7)
  ∷ Then enter the file then rank of the space you'd like to move your 
    piece to.
- ∷ Type 'exit' to leave at any time.
+ ∷ Type 'exit' or 'quit' to leave at any time.
  ∷ Type 'help' at any time to repeat this message.
 
 ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ ∷ 
@@ -35,7 +35,109 @@ Player 1 name: Confirm name Bob? (Y/N): Player 2 name: Confirm name Mumu? (Y/N):
  ___    ________________________________   ___ 
 |   |  | a | b | c | d | e | f | g | h |  |   | 
  ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
-Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Other player's piece chosen. ♚ Zari's turn ♚Zari, choose the square of the piece to move: Confirm moving pawn from c2? (Y/N): ♔ Lily's turn ♔Lily, choose the square of the piece to move: Other player's piece chosen. Invalid square, try again: Confirm moving pawn from f7? (Y/N): ♚ Zari's turn ♚Zari, choose the square of the piece to move: No piece there. Invalid square, try again: Confirm moving pawn from h2? (Y/N): ♚ Zari's turn ♚Zari, choose the square of the piece to move: No valid moves available. Invalid square, try again: Confirm moving knight from g1? (Y/N): ♚ Zari's turn ♚Zari, choose the square of the piece to move: No valid moves available. Invalid square, try again: Confirm moving knight from b1? (Y/N): ♔ Lily's turn ♔Lily, choose the square of the piece to move: Other player's piece chosen. Invalid square, try again: No piece there. Invalid square, try again: Invalid square, try again: Confirm moving pawn from e7? (Y/N): This bishop can be moved to: d7 e6 f5 b7 a6
+Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Invalid square, try again: Other player's piece chosen.  ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ |  | 8 | 
+| 7 |  | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ |  | 2 | 
+| 1 |  | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+♚ Zari's turn ♚
+Zari, choose the square of the piece to move: Confirm moving pawn from c2? (Y/N):  ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ |  | 8 | 
+| 7 |  | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ |  | 2 | 
+| 1 |  | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+♔ Lily's turn ♔
+Lily, choose the square of the piece to move: Other player's piece chosen. Invalid square, try again: Confirm moving pawn from f7? (Y/N):  ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ |  | 8 | 
+| 7 |  | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ |  | 2 | 
+| 1 |  | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+♚ Zari's turn ♚
+Zari, choose the square of the piece to move: No piece there. Invalid square, try again: Confirm moving pawn from h2? (Y/N):  ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ |  | 8 | 
+| 7 |  | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ |  | 2 | 
+| 1 |  | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+♚ Zari's turn ♚
+Zari, choose the square of the piece to move: No valid moves available. Invalid square, try again: Confirm moving knight from g1? (Y/N):  ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ |  | 8 | 
+| 7 |  | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ |  | 2 | 
+| 1 |  | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+♚ Zari's turn ♚
+Zari, choose the square of the piece to move: No valid moves available. Invalid square, try again: Confirm moving knight from b1? (Y/N):  ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+| 8 |  | ♖ | ♘ | ♗ | ♕ | ♔ | ♗ | ♘ | ♖ |  | 8 | 
+| 7 |  | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ | ♙ |  | 7 | 
+| 6 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 6 | 
+| 5 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 5 | 
+| 4 |  | ∷ |   | ∷ |   | ∷ |   | ∷ |   |  | 4 | 
+| 3 |  |   | ∷ |   | ∷ |   | ∷ |   | ∷ |  | 3 | 
+| 2 |  | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ | ♟ |  | 2 | 
+| 1 |  | ♜ | ♞ | ♝ | ♛ | ♚ | ♝ | ♞ | ♜ |  | 1 | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+ ___    ________________________________   ___ 
+|   |  | a | b | c | d | e | f | g | h |  |   | 
+ ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
+♔ Lily's turn ♔
+Lily, choose the square of the piece to move: Other player's piece chosen. Invalid square, try again: No piece there. Invalid square, try again: Invalid square, try again: Confirm moving pawn from e7? (Y/N): This bishop can be moved to: d7 e6 f5 b7 a6
 This knight can be moved to: a3 c3
 Enter one of the above squares to move: Confirm moving knight to a3? (Y/N): White knight moves from b1 to a3
 This queen can be moved to: e8 f8 g8 h8 e7 f6 g5 h4 d7 d6 d5 d4 d3 d2 d1 c7 b6 a5 c8 b8 a8
@@ -45,25 +147,37 @@ Enter one of the above squares to move: Confirm moving rook to a1? (Y/N): White 
 This pawn can be moved to: g6 g5
 Enter one of the above squares to move: Confirm moving pawn to g6? (Y/N): Enter one of the above squares to move: Confirm moving pawn to g5? (Y/N): Black pawn moves from g7 to g5
 This bishop can be moved to: d7 e6 f5 b7 a6
-Enter one of the above squares to move: Confirm moving bishop to f5? (Y/N): Black bishop captures white knight on f5!
+Enter one of the above squares to move: Confirm moving bishop to f5? (Y/N): -----------------------------------------------------
+Black bishop captures white knight on f5!
+-----------------------------------------------------
 This bishop can be moved to: d7 e6 f5 b7 a6
-Enter one of the above squares to move: Confirm moving bishop to f5? (Y/N): Black bishop captures white knight on f5!
+Enter one of the above squares to move: Confirm moving bishop to f5? (Y/N): -----------------------------------------------------
+Black bishop captures white knight on f5!
+-----------------------------------------------------
 This pawn can be moved to: g6 g5
 Enter one of the above squares to move: Confirm moving pawn to g5? (Y/N): Black pawn moves from g7 to g5
 This pawn can be moved to: f6 f7 g6
-Enter one of the above squares to move: Confirm moving pawn to g6? (Y/N): White pawn captures black pawn on g5!
+Enter one of the above squares to move: Confirm moving pawn to g6? (Y/N): -----------------------------------------------------
+White pawn captures black pawn on g5!
+-----------------------------------------------------
 This pawn can be moved to: g6 g5
 Enter one of the above squares to move: Confirm moving pawn to g5? (Y/N): Black pawn moves from g7 to g5
 This pawn can be moved to: f6 f7 g6
-Enter one of the above squares to move: Confirm moving pawn to g6? (Y/N): White pawn captures black pawn on g5!
+Enter one of the above squares to move: Confirm moving pawn to g6? (Y/N): -----------------------------------------------------
+White pawn captures black pawn on g5!
+-----------------------------------------------------
 This pawn can be moved to: c3 c4
 Enter one of the above squares to move: Confirm moving pawn to c4? (Y/N): White pawn moves from c2 to c4
 This pawn can be moved to: b3 b2 c3
-Enter one of the above squares to move: Confirm moving pawn to c3? (Y/N): Black pawn captures white pawn on c4!
+Enter one of the above squares to move: Confirm moving pawn to c3? (Y/N): -----------------------------------------------------
+Black pawn captures white pawn on c4!
+-----------------------------------------------------
 This pawn can be moved to: c3 c4
 Enter one of the above squares to move: Confirm moving pawn to c4? (Y/N): White pawn moves from c2 to c4
 This pawn can be moved to: b3 b2 c3
-Enter one of the above squares to move: Confirm moving pawn to c3? (Y/N): Black pawn captures white pawn on c4!
+Enter one of the above squares to move: Confirm moving pawn to c3? (Y/N): -----------------------------------------------------
+Black pawn captures white pawn on c4!
+-----------------------------------------------------
 Pawn promotion available! Pawn can be promoted to a queen, rook, bishop, or knight. 
 Select a piece type to upgrade to: Confirm promoting pawn to queen? (Y/N): Pawn promotion available! Pawn can be promoted to a queen, rook, bishop, or knight. 
 Select a piece type to upgrade to: Confirm promoting pawn to knight? (Y/N): This pawn can be moved to: g6 g5
@@ -140,3 +254,5 @@ Enter one of the above squares to move: Confirm moving pawn to c4? (Y/N): White 
  ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
 This pawn can be moved to: g6 g5
 Enter one of the above squares to move: Confirm moving pawn to g6? (Y/N): Black pawn moves from g7 to g6
+This knight can be moved to: d5 d3 a6 c6 a2 c2
+Enter one of the above squares to move: Confirm moving knight to c2? (Y/N): Black knight moves from b4 to c2

@@ -211,7 +211,7 @@ RSpec.describe Chess do
       it "should call the make_move method" do
         allow(@game).to receive(:gets).and_return("c2\n", "Y\n")
         expect(@game).to receive(:make_move)
-        @game.player_turn(player1, "\u265A")
+        @game.player_turn(player1)
       end
     end
 
@@ -219,7 +219,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("d2\n", "f7\n", "Y\n")
         expect(@game).to receive(:make_move)
-        @game.player_turn(player2, "\u2654")
+        @game.player_turn(player2)
       end
     end
 
@@ -227,7 +227,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("g5\n", "h2\n", "Y\n")
         expect(@game).to receive(:make_move)
-        @game.player_turn(player1, "\u265A")
+        @game.player_turn(player1)
       end
     end
 
@@ -235,7 +235,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("e1\n", "g1\n", "Y\n")
         expect(@game).to receive(:make_move)
-        @game.player_turn(player1, "\u265A")
+        @game.player_turn(player1)
       end
     end
 
@@ -243,7 +243,7 @@ RSpec.describe Chess do
       it "should reprompt them, then move the second piece" do
         allow(@game).to receive(:gets).and_return("d1\n", "b1\n", "Y\n")
         expect(@game).to receive(:make_move)
-        @game.player_turn(player1, "\u265A")
+        @game.player_turn(player1)
       end
     end
 
@@ -251,7 +251,7 @@ RSpec.describe Chess do
       it "won't move on until they enter the fourth valid one" do
         allow(@game).to receive(:gets).and_return("b1\n", "c6\n", "banana\n", "e7\n", "Y\n")
         expect(@game).to receive(:make_move)
-        @game.player_turn(player2, "\u2654")
+        @game.player_turn(player2)
       end
     end
   end
@@ -476,6 +476,23 @@ RSpec.describe Chess do
         allow(@game).to receive(:gets).and_return("g6\n", "Y\n")
         @game.make_move("g7", g7_pawn)
         expect(f2_pawn.en_passant_available).to be false
+      end
+    end
+  end
+
+
+
+  # --------CHECK KINGS---------
+  describe "#check_kings" do
+    context "black knight puts white king in check" do
+      it "should call the warn_player method" do     
+        b8_knight = Knight.new(:black, [5,2]) #b4
+        e1_king = King.new(:white, [8,5])
+        @game.board.board[5][2] = b8_knight #b4
+        @game.board.board[8][5] = e1_king #e1
+        allow(@game).to receive(:gets).and_return("c2\n", "Y\n")
+        expect(@game).to receive(:warn_player).with("e1", e1_king)  
+        @game.make_move("b4", b8_knight)
       end
     end
   end

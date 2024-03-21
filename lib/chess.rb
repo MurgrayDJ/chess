@@ -7,6 +7,7 @@ class Chess
   attr_accessor :player1
   attr_accessor :player2
   attr_accessor :round
+  attr_reader :current_player
   DOTS = "\u2237"
   
   def initialize
@@ -14,6 +15,7 @@ class Chess
     @board = Board.new()
     @player1 = Player.new("player1", :white)
     @player2 = Player.new("player2", :black)
+    @current_player = @player1
   end
 
   def run_game
@@ -38,13 +40,13 @@ class Chess
   end
 
   def play_round
-    player_turn(@player1, "\u265A")
-    player_turn(@player2, "\u2654")
+    @current_player = (@current_player == @player1) ? @player2 : @player1
+    player_turn(@current_player)
   end
 
-  def player_turn(player, king_sym)
+  def player_turn(player)
     @board.print_board
-    puts "#{king_sym} #{player.name}'s turn #{king_sym}"
+    puts "#{player.king_symbol} #{player.name}'s turn #{player.king_symbol}"
     print "#{player.name}, choose the square of the piece to move: "
     square = gets.chomp
     square_val = nil
@@ -80,7 +82,34 @@ class Chess
     if piece.is_a?(Pawn) 
       mark_en_passant(piece)
       try_promotion(piece, new_square) 
+    else
+      check_kings(piece)
     end
+  end
+
+  def check_kings(piece)
+    king_location = ''
+    other_player = (@current_player == @player1) ? @player2 : @player1
+    (1..8).each do |x|
+      (1..8).each do |y|
+        if @board.board[x][y].is_a?(King) && @board.board[x][y].color != piece.color 
+          king_location = [x,y]
+        end
+      end
+    end
+    moves = @board.check_surroundings(piece, piece.get_moves)
+    piece_moves = moves
+    if !moves.is_a?(Array) then piece_moves = moves.values.reduce([], :concat) end
+    if piece_moves.include?(king_location)
+      king_piece = @board.board[king_location[0]][king_location[1]]
+      warn_player(@board.xy_to_square(king_location), king_piece)
+    end
+  end
+
+  def warn_player(square, king_piece)
+    player = (@current_player == @player1) ? @player2 : @player1
+    puts "#{player.name} your king on #{square} is in check, you must move it."
+    make_move(square, king_piece)
   end
 
   def mark_en_passant(pawn)
@@ -90,7 +119,7 @@ class Chess
       right_square = @board.board[new_spot[0]][new_spot[1] + 1]
       left_square = @board.board[new_spot[0]][new_spot[1] - 1]
     else
-      right_square = @board.board[new_spot[0]][new_spot[1] -1]
+      right_square = @board.board[new_spot[0]][new_spot[1] - 1]
       left_square = @board.board[new_spot[0]][new_spot[1] + 1]
     end
     if ((old_spot[0] - new_spot[0]).abs == 2)
@@ -122,14 +151,19 @@ class Chess
     @board.board[pawn.current_pos[0]][pawn.current_pos[1]] = new_piece
   end
 
-  def show_user_moves(piece, moves)
-    print "This #{piece.type} can be moved to: "
+  def convert_moves(moves)
     converted_moves = ''
     if moves.is_a?(Array)
       converted_moves = moves.map{|move| @board.xy_to_square(move)}
     else
       converted_moves = moves.values.reduce([], :concat).map{|move| @board.xy_to_square(move)}
     end
+    converted_moves
+  end
+
+  def show_user_moves(piece, moves)
+    print "This #{piece.type} can be moved to: "
+    converted_moves = convert_moves(moves)
     puts converted_moves.join(" ")
     converted_moves
   end
@@ -309,5 +343,5 @@ class Chess
   end
 end
 
-new_game = Chess.new()
-new_game.run_game
+# new_game = Chess.new()
+# new_game.run_game
