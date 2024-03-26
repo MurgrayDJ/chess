@@ -495,5 +495,29 @@ RSpec.describe Chess do
         @game.make_move("b4", b8_knight)
       end
     end
+
+    context "white queen knight puts black king in check" do
+      it "should call the warn_player method" do     
+        d1_queen = Queen.new(:white, [8,4]) #d1
+        e8_king = King.new(:black, [1,5]) 
+        @game.board.board[8][4] = d1_queen #d1
+        @game.board.board[1][5] = e8_king #e8
+        allow(@game).to receive(:gets).and_return("a4\n", "Y\n")
+        expect(@game).to receive(:warn_player).with("e8", e8_king)  
+        @game.make_move("d1", d1_queen)
+      end
+    end
+
+    context "black queen is next to black king" do
+      it "should not call the warn_player method" do
+        d8_queen = Queen.new(:black, [1,4]) #d8
+        e8_king = King.new(:black, [1,5]) 
+        @game.board.board[1][4] = d8_queen #d8
+        @game.board.board[1][5] = e8_king #e8
+        allow(@game).to receive(:gets).and_return("d7\n", "Y\n")
+        expect(@game).not_to receive(:warn_player).with("e8", e8_king)  
+        @game.make_move("d8", d8_queen)
+      end
+    end
   end
 end
