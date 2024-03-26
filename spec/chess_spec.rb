@@ -491,10 +491,10 @@ RSpec.describe Chess do
         @game.board.board[5][2] = b8_knight #b4
         @game.board.board[8][5] = e1_king #e1
         allow(@game).to receive(:gets).and_return("c2\n", "Y\n")
-        expect(@game).to receive(:warn_player).with("e1", e1_king)  
+       expect(@game).to receive(:warn_player).with("e1", e1_king)  
         @game.make_move("b4", b8_knight)
       end
-    end
+    end 
 
     context "white queen knight puts black king in check" do
       it "should call the warn_player method" do     
@@ -517,6 +517,17 @@ RSpec.describe Chess do
         allow(@game).to receive(:gets).and_return("d7\n", "Y\n")
         expect(@game).not_to receive(:warn_player).with("e8", e8_king)  
         @game.make_move("d8", d8_queen)
+      end
+    end
+  end
+
+  # --------GAME OVER---------
+  describe "game_over?" do
+    context "white queen knight captures black king" do
+      it "should end the game" do     
+        e8_king = King.new(:black, [1,5]) 
+        @game.board.captured_pieces[:black] << e8_king
+        expect(@game.game_over?).to be true
       end
     end
   end

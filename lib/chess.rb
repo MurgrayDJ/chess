@@ -30,17 +30,39 @@ class Chess
     until game_over?
       @round += 1
       play_round
-    end
+    end      
+    puts "Thank you for playing!"
+    exit!
   end
 
   def game_over?
-    #checkmate
+    its_game_over = false
+    if checkmate?
+      @board.print_board
+      puts "----------------------------------"
+      puts "#{@current_player.name} has won with a checkmate!!!"
+      puts "----------------------------------"
+      its_game_over = true
+    end
     #player quits
     #draw
+    its_game_over
+  end
+
+  def checkmate?
+    is_checkmate = false
+    other_player = (@current_player == @player1) ? @player2 : @player1
+    if @board.captured_pieces[other_player.color].any? do |piece|
+        is_checkmate = piece.is_a?(King)
+      end
+    end
+    is_checkmate
   end
 
   def play_round
-    @current_player = (@current_player == @player1) ? @player2 : @player1
+    if @round > 1 
+      @current_player = (@current_player == @player1) ? @player2 : @player1
+    end
     player_turn(@current_player)
   end
 
