@@ -130,6 +130,8 @@ class Chess
 
   def warn_player(square, king_piece)
     player = (@current_player == @player1) ? @player2 : @player1
+    @current_player = player
+    @board.print_board
     puts "#{player.name} your king on #{square} is in check, you must move it."
     make_move(square, king_piece)
   end
