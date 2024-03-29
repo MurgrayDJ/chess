@@ -1,5 +1,6 @@
 require_relative 'board.rb'
 require_relative 'player.rb'
+require_relative 'serializer.rb'
 Dir[File.join(__dir__, './pieces', '*.rb')].each { |file| require file }
 
 class Chess
@@ -8,6 +9,7 @@ class Chess
   attr_accessor :player2
   attr_accessor :round
   attr_reader :current_player
+  attr_reader :serializer
   DOTS = "\u2237"
   
   def initialize
@@ -16,14 +18,20 @@ class Chess
     @player1 = Player.new("player1", :white)
     @player2 = Player.new("player2", :black)
     @current_player = @player1
+    @serializer = Serializer.new()
   end
 
   def run_game
     print_title
     print_rules
-    create_players
-    generate_pieces
-    play_game
+    choice = choose_new_or_save
+    if choice == "1"
+      create_players
+      generate_pieces
+      play_game
+    else
+      @serializer.find_save
+    end
   end
 
   def play_game
@@ -284,6 +292,19 @@ class Chess
     puts
   end
 
+  def choose_new_or_save
+    puts "#{DOTS} " * 21 
+    puts "Would you like to: "
+    puts "   1. Start a new game"
+    puts "            OR"
+    puts "   2. Open a saved game"
+    puts "*Save files are deleted after being reopened."
+    puts
+    action_prompt = "Please enter 1 or 2 for an action: "
+    action_choices = %w(1 2)
+    choice = get_valid_data(action_prompt, nil, action_choices)
+  end
+
   def create_players
     puts "Welcome Players! Please enter your names: "
     @player1.name = get_names(1)
@@ -365,5 +386,5 @@ class Chess
   end
 end
 
-# new_game = Chess.new()
-# new_game.run_game
+new_game = Chess.new()
+new_game.run_game
