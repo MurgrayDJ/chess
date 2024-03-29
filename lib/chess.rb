@@ -44,8 +44,6 @@ class Chess
       puts "----------------------------------"
       its_game_over = true
     end
-    #player quits
-    #draw
     its_game_over
   end
 
