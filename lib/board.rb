@@ -1,6 +1,7 @@
 require_relative 'piece.rb'
 
 class Board
+  include Hashable
   attr_accessor :board
   attr_reader :captured_pieces
   ROWS = 10

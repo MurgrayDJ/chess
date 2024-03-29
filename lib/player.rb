@@ -1,5 +1,6 @@
 
 class Player
+  include Hashable
   attr_accessor :name
   attr_accessor :pieces
   attr_reader :king_symbol

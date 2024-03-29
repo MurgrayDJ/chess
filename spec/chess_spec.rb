@@ -4,7 +4,6 @@ Dir[File.join(__dir__, '../lib/pieces', '*.rb')].each { |file| require file }
 
 RSpec.describe Chess do
   before { @game = described_class.new }
-  DOTS = "\u2237"
 
 
   # --------PRINT TITLE---------
@@ -480,8 +479,6 @@ RSpec.describe Chess do
     end
   end
 
-
-
   # --------CHECK KINGS---------
   describe "#check_kings" do
     context "black knight puts white king in check" do
@@ -530,5 +527,10 @@ RSpec.describe Chess do
         expect(@game.game_over?).to be true
       end
     end
+  end
+
+  # --------GET VALID DATA---------
+  describe "#get_valid_data" do
+    context ""
   end
 end

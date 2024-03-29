@@ -4,6 +4,7 @@ require_relative 'serializer.rb'
 Dir[File.join(__dir__, './pieces', '*.rb')].each { |file| require file }
 
 class Chess
+  include Hashable
   attr_accessor :board
   attr_accessor :player1
   attr_accessor :player2
@@ -38,7 +39,11 @@ class Chess
     until game_over?
       @round += 1
       play_round
-    end      
+    end 
+    end_game
+  end
+
+  def end_game
     puts "Thank you for playing!"
     exit!
   end
@@ -245,7 +250,7 @@ class Chess
 
   def get_square(square)
     until square.match?(/^[a-h]{1}[1-8]{1}$/i)
-      quit_or_help(square)
+      quit_save_or_help(square)
       print "Invalid square, try again: "
       square = gets.chomp
     end
@@ -286,7 +291,10 @@ class Chess
     puts "   piece you would like to move. (e.g., e2, f7)"
     puts " #{DOTS} Then enter the file then rank of the space you'd like to move your "
     puts "   piece to."
-    puts " #{DOTS} Type 'exit' or 'quit' to leave at any time."
+    puts " #{DOTS} The only way to win is to capture the opponent's king. Draws are not "
+    puts "    enforced."
+    puts " #{DOTS} Type 'exit' to leave without saving at any time." 
+    puts " #{DOTS} Type 'save' or 'quit' to get choice to save at any time."
     puts " #{DOTS} Type 'help' at any time to repeat this message.\n\n"
     puts "#{DOTS} " * 21 
     puts
@@ -348,19 +356,22 @@ class Chess
     until name_confirmed
       print "Player #{player_num} name: "
       name = gets.chomp
-      quit_or_help(name)
+      quit_save_or_help(name)
       confirmation = "Confirm name #{name}? (Y/N): "
       name_confirmed = confirm_choice?(confirmation)
     end
     name
   end
 
-  def quit_or_help(user_input)
+  def quit_save_or_help(user_input)
     if user_input.casecmp?("exit") || user_input.casecmp?("quit")
-      puts "Thank you for playing!"
-      exit!
+      confirmation = "Do you want to save this game? (Y/N): "
+      choice = confirm_choice?(confirmation)
+      choice ? @serializer.save_game(self) : end_game
     elsif user_input.casecmp?("help")
       print_rules
+    elsif user_input.casecmp?("save")
+      @serializer.save_game(self)
     end
   end
 
@@ -372,12 +383,8 @@ class Chess
       valid_responses.each do |valid_response|
         if response.casecmp?(valid_response)
           return response
-        elsif response.casecmp?("EXIT") || response.casecmp?("QUIT")
-          puts "Thank you for playing!"
-          exit!
-        elsif response.casecmp?("HELP")
-          print_rules
-          break
+        else
+          quit_save_or_help(response)
         end
       end
       response = nil
@@ -386,5 +393,5 @@ class Chess
   end
 end
 
-new_game = Chess.new()
-new_game.run_game
+# new_game = Chess.new()
+# new_game.run_game

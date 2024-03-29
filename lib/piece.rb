@@ -1,6 +1,7 @@
-
+require 'hashable'
 
 class Piece
+  include Hashable 
   attr_accessor :symbol
   attr_accessor :type
   attr_accessor :color
