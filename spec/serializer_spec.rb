@@ -8,12 +8,23 @@ RSpec.describe Serializer do
     @chess_game = Chess.new
     @chess_game.generate_pieces
     @game_saver = described_class.new
+    @new_files = []
+  end
+  SAVE_DIR = "savefiles/"
+
+  after do
+    @new_files.each do |filename|
+      file = "#{SAVE_DIR}#{filename}"
+      File.delete(file)
+    end
   end
 
   describe "#save_game" do
-    context "saving new game file" do
-      it "it should add a new file in the save_files folder" do
-        expect{@game_saver.save_game(@chess_game)}.to output(include('created successfully.')).to_stdout
+    context "saving new game file" do 
+      it "should create a new save file" do
+        file_name = @game_saver.save_game(@chess_game)
+        @new_files << file_name
+        expect(File.file?("#{SAVE_DIR}#{file_name}"))
       end
     end
   end

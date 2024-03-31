@@ -1,34 +1,6 @@
 require 'json'
 
-# module JSONable
-#   module ClassMethods
-#     attr_accessor :attributes
-
-#     def attr_accessor *attrs
-#       self.attributes = Array attrs
-#       super
-#     end
-#   end
-
-#   def self.included(base)
-#     base.extend(ClassMethods)
-#   end
-
-#   def as_json options = {}
-#     serialized = Hash.new
-#     self.class.attributes.each do |attribute|
-#       serialized[attribute] = self.public_send attribute
-#     end
-#     serialized
-#   end
-
-#   def to_json *a
-#     as_json.to_json *a
-#   end
-# end
-
 class Serializer
-  # include JSONable
   @@game_info = Hash.new {|h,k| h[k] = Hash.new(&h.default_proc)}
 
   def initialize
@@ -38,13 +10,15 @@ class Serializer
   def save_game(game_obj)
     @@game_info = game_obj.to_deep_hash
     date_and_time = Time.new.strftime("%Y-%m-%d_%H%M%S")
-    filename = "savefiles/chess_#{date_and_time}.txt"
+    file_name = "chess_#{date_and_time}.txt"
+    file_location = "savefiles/#{file_name}"
 
-    File.open(filename, 'w') do |file|
+    File.open(file_location, 'w') do |file|
       file.puts @@game_info
     end
 
-    puts "#{filename} created successfully."
+    puts "#{file_name} created successfully."
+    file_name
   end
 
   def open_save(file_path)
