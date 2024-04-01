@@ -1,10 +1,11 @@
 require 'json'
+require 'pp'
 
 class Serializer
   @@game_info = Hash.new {|h,k| h[k] = Hash.new(&h.default_proc)}
 
   def initialize
-    Dir.mkdir('savefiles') unless Dir.exist?('savefiles')
+    Dir.mkdir('../savefiles') unless Dir.exist?('../savefiles')
   end
 
   def save_game(game_obj)
@@ -14,27 +15,43 @@ class Serializer
     file_location = "savefiles/#{file_name}"
 
     File.open(file_location, 'w') do |file|
-      file.puts @@game_info
+      file.puts @@game_info.to_json
     end
 
     puts "#{file_name} created successfully."
     file_name
   end
 
-  def open_save(file_path)
-    if File.exist? file_path
+  def load_save(chess_obj)
+    chess_obj.round = @@game_info[:round]
+    load_player(chess_obj, "player1")
+  end
+
+  def load_player(chess_obj, player)
+    player_var = chess_obj.instance_variable_get("@#{player}")
+    @@game_info["#{player}".to_sym].each do |key, val|
+      player_var.instance_variable_set("@#{key}", val)
+    end
+  end
+
+  def open_save(file_path, chess_obj)
+    if File.exist?(file_path)
       save_contents = File.read(file_path)
       @@game_info = JSON.parse save_contents.gsub('=>', ':')
+      #pp @@game_info
       @@game_info.transform_keys!(&:to_sym)
-      File.delete(file_path)
-      play_game
+      #puts @@game_info[:board]
+      #return @@game_info
+      # File.delete(file_path)
+      # play_game
+      load_save(chess_obj)
     else
       puts "Issue opening file. Please try a different one."
     end
   end
 
-  def find_save
-    save_files = Dir.children("./savefiles")
+  def find_save(chess_obj)
+    save_files = Dir.children("savefiles/")
     save_files.unshift("blank")
     save_files.each_with_index do |save_file, file_number|
       if file_number != 0
@@ -47,7 +64,7 @@ class Serializer
     save_num = get_valid_data(save_prompt, nil, valid_save_nums).to_i
     puts "Save file chosen: #{save_num}. #{save_files[save_num]}"
     puts
-    open_save("./savefiles/#{save_files[save_num]}")
+    open_save("savefiles/#{save_files[save_num]}", chess_obj)
   end
 
   def get_valid_data(prompt, response, valid_responses) 

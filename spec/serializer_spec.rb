@@ -12,12 +12,12 @@ RSpec.describe Serializer do
   end
   SAVE_DIR = "savefiles/"
 
-  after do
-    @new_files.each do |filename|
-      file = "#{SAVE_DIR}#{filename}"
-      File.delete(file)
-    end
-  end
+  # after do
+  #   @new_files.each do |filename|
+  #     file = "#{SAVE_DIR}#{filename}"
+  #     File.delete(file)
+  #   end
+  # end
 
   describe "#save_game" do
     context "saving new game file" do 
