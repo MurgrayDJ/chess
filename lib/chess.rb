@@ -369,6 +369,7 @@ class Chess
       confirmation = "Do you want to save this game? (Y/N): "
       choice = confirm_choice?(confirmation)
       choice ? @serializer.save_game(self) : end_game
+      exit!
     elsif user_input.casecmp?("help")
       print_rules
     elsif user_input.casecmp?("save")
