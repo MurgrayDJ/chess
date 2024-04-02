@@ -294,8 +294,8 @@ class Chess
     puts "   piece to."
     puts " #{DOTS} The only way to win is to capture the opponent's king. Draws are not "
     puts "    enforced."
-    puts " #{DOTS} Type 'exit' to leave without saving at any time." 
-    puts " #{DOTS} Type 'save' or 'quit' to get choice to save at any time."
+    puts " #{DOTS} Type 'save' to save at any time." 
+    puts " #{DOTS} Type 'exit' or 'quit' to get choice to save at any time."
     puts " #{DOTS} Type 'help' at any time to repeat this message.\n\n"
     puts "#{DOTS} " * 21 
     puts
