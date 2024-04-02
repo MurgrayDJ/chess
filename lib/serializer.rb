@@ -50,7 +50,6 @@ class Serializer
     end
     chess_board.captured_pieces[:white] = @@game_info[:board]["captured_pieces"]["white"]
     chess_board.captured_pieces[:black] = @@game_info[:board]["captured_pieces"]["black"]
-    puts chess_board.captured_pieces
   end
 
   def build_piece(slot)
@@ -72,12 +71,8 @@ class Serializer
     if File.exist?(file_path)
       save_contents = File.read(file_path)
       @@game_info = JSON.parse save_contents.gsub('=>', ':')
-      #pp @@game_info
       @@game_info.transform_keys!(&:to_sym)
-      #puts @@game_info[:board]
-      #return @@game_info
-      # File.delete(file_path)
-      # play_game
+      File.delete(file_path)
       load_save(chess_obj)
     else
       puts "Issue opening file. Please try a different one."
