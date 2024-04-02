@@ -25,11 +25,45 @@ class Serializer
   def load_save(chess_obj)
     chess_obj.round = @@game_info[:round]
     load_player(chess_obj, "player1")
+    load_player(chess_obj, "player2")
+    set_current_player(chess_obj)
+    load_board(chess_obj)
+  end
+
+  def set_current_player(chess_obj)
+    if @@game_info[:current_player]["color"] == "white"
+      chess_obj.current_player = chess_obj.player1
+    else
+      chess_obj.current_player = chess_obj.player2
+    end
+  end
+
+  def load_board(chess_obj)
+    chess_board = chess_obj.instance_variable_get("@board")
+    board_var = @@game_info[:board]
+    @@game_info[:board]["board"].each_with_index do |row, x|
+      row.each_with_index do |slot, y|
+        if slot.is_a?(Hash)
+          chess_board.board[x][y] = build_piece(slot)
+        end
+      end
+    end
+    chess_board.captured_pieces[:white] = @@game_info[:board]["captured_pieces"]["white"]
+    chess_board.captured_pieces[:black] = @@game_info[:board]["captured_pieces"]["black"]
+    puts chess_board.captured_pieces
+  end
+
+  def build_piece(slot)
+    piece = Object.const_get(slot["type"].capitalize)
+    piece = piece.new(slot["color"].to_sym, slot["start_pos"])
+    piece.current_pos = slot["current_pos"]
+    piece
   end
 
   def load_player(chess_obj, player)
     player_var = chess_obj.instance_variable_get("@#{player}")
     @@game_info["#{player}".to_sym].each do |key, val|
+      if key == "color" then val = val.to_sym end
       player_var.instance_variable_set("@#{key}", val)
     end
   end

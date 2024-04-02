@@ -9,7 +9,7 @@ class Chess
   attr_accessor :player1
   attr_accessor :player2
   attr_accessor :round
-  attr_reader :current_player
+  attr_accessor :current_player
   attr_reader :serializer
   DOTS = "\u2237"
   
@@ -29,36 +29,12 @@ class Chess
     if choice == "1"
       create_players
       generate_pieces
-      play_game
     else
       @serializer.find_save(self)
-      puts @player1.name
+      puts "Welcome back #{@player1.name} and #{player2.name}!"
     end
+    play_game
   end
-
-  # def load_players
-
-  # end
-
-  # def open_save(save)
-  #   @round = save[:round]
-  #   save[]
-  #   self.instance_variables.each do |chess_var|
-
-  #     chess_var.instance_variables.each do |var|
-  #     save.each do |key,val|
-  #       if key != :board && key != :serializer
-  #         chess_var = self.instance_variable_get("@#{key}")
-  #         chess_var.
-  #         self.instance_variable_set("@#{key}", val)
-  #         self.class.send(:define_method, key, proc{self.instance_variable_get("@#{key}")})
-  #         self.class.send(:define_method, "#{key}=", proc{|val| self.instance_variable_set("@#{key}", val)})
-  #       elsif key == :board
-  #         build_board(val)
-  #       end
-  #     end
-  #   end
-  # end
 
   def play_game
     until game_over?

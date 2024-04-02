@@ -3,7 +3,7 @@ require_relative 'piece.rb'
 class Board
   include Hashable
   attr_accessor :board
-  attr_reader :captured_pieces
+  attr_accessor :captured_pieces
   ROWS = 10
   COLUMNS = 10
   DOTS = "\u2237"
