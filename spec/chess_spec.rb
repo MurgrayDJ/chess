@@ -526,4 +526,40 @@ RSpec.describe Chess do
       end
     end
   end
+
+
+  # --------QUIT SAVE OR HELP---------
+  describe '#quit_save_or_help' do
+    context 'when user inputs "exit"' do
+      it 'saves the game and exits' do
+        allow(game.serializer).to receive(:save_game).with(game)
+        allow(game).to receive(:exit!).and_return(nil)
+        allow(game).to receive(:confirm_choice?).and_return(true)
+        game.quit_save_or_help('exit')
+      end
+    end
+
+    context 'when user inputs "quit"' do
+      it 'saves the game and exits' do
+        allow(game.serializer).to receive(:save_game).with(game)
+        allow(game).to receive(:exit!).and_return(nil)
+        allow(game).to receive(:confirm_choice?).and_return(true)
+        game.quit_save_or_help('quit')
+      end
+    end
+
+    context 'when user inputs "help"' do
+      it 'prints rules' do
+        expect(game).to receive(:print_rules)
+        game.quit_save_or_help('help')
+      end
+    end
+
+    context 'when user inputs "save"' do
+      it 'saves the game' do
+        expect(game.serializer).to receive(:save_game).with(game)
+        game.quit_save_or_help('save')
+      end
+    end
+  end
 end
