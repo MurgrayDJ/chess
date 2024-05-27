@@ -123,7 +123,6 @@ class Chess
 
   def check_kings(piece)
     king_location = ''
-    other_player = (@current_player == @player1) ? @player2 : @player1
     (1..8).each do |x|
       (1..8).each do |y|
         if @board.board[x][y].is_a?(King) && @board.board[x][y].color != piece.color 
@@ -311,7 +310,7 @@ class Chess
     puts
     action_prompt = "Please enter 1 or 2 for an action: "
     action_choices = %w(1 2)
-    choice = get_valid_data(action_prompt, nil, action_choices)
+    get_valid_data(action_prompt, nil, action_choices)
   end
 
   def create_players
@@ -395,5 +394,5 @@ class Chess
   end
 end
 
-new_game = Chess.new()
-new_game.run_game
+# new_game = Chess.new()
+# new_game.run_game

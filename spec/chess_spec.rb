@@ -5,7 +5,6 @@ Dir[File.join(__dir__, '../lib/pieces', '*.rb')].each { |file| require file }
 RSpec.describe Chess do
   subject(:game) { described_class.new }
 
-
   # --------PRINT TITLE---------
   describe "#print_title" do
     context "title is printed surrounded by dots for flare" do
@@ -174,7 +173,6 @@ RSpec.describe Chess do
 
   # --------RIGHT COLOR---------
   describe "#right_color?" do
-    player1 = Player.new("Zari", :white)
     player2 = Player.new("Lily", :black)
 
     context "player wants to move their own piece" do

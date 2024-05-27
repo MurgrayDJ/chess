@@ -40,7 +40,6 @@ class Serializer
 
   def load_board(chess_obj)
     chess_board = chess_obj.instance_variable_get("@board")
-    board_var = @@game_info[:board]
     @@game_info[:board]["board"].each_with_index do |row, x|
       row.each_with_index do |slot, y|
         if slot.is_a?(Hash)
