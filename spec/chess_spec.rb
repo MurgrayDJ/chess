@@ -516,18 +516,6 @@ RSpec.describe Chess do
     end
   end
 
-  # --------GAME OVER---------
-  describe "game_over?" do
-    context "white queen knight captures black king" do
-      it "should end the game" do     
-        e8_king = King.new(:black, [1,5]) 
-        game.board.captured_pieces[:black] << e8_king
-        expect(game.game_over?).to be true
-      end
-    end
-  end
-
-
   # --------QUIT SAVE OR HELP---------
   describe '#quit_save_or_help' do
     context 'when user inputs "exit"' do
@@ -559,6 +547,50 @@ RSpec.describe Chess do
       it 'saves the game' do
         expect(game.serializer).to receive(:save_game).with(game)
         game.quit_save_or_help('save')
+      end
+    end
+  end
+
+  # --------GET VALID DATA---------
+  describe '#get_valid_data' do
+    context 'when response is nil' do
+      it 'prints prompt and gets user input' do
+        prompt = 'Enter your choice: '
+        valid_responses = ['yes', 'no']
+        expect(game).to receive(:gets).and_return('yes')
+        expect(game).to receive(:print).with(prompt)
+        game.get_valid_data(prompt, nil, valid_responses)
+      end
+    end
+
+    context 'when response is valid' do
+      it 'returns response' do
+        prompt = 'Enter your choice: '
+        valid_responses = ['yes', 'no']
+        response = 'yes'
+        expect(game.get_valid_data(prompt, response, valid_responses)).to eq(response)
+      end
+    end
+
+    context 'when response is invalid' do
+      it 'prompts user for a valid response' do
+        prompt = 'Enter your choice: '
+        valid_responses = ['yes', 'no']
+        response = 'invalid'
+        expect(game).to receive(:quit_save_or_help).with(response).at_least(:once)
+        expect(game).to receive(:gets).and_return('yes')
+        expect(game.get_valid_data(prompt, response, valid_responses)).to eq('yes')
+      end
+    end
+  end
+
+  # --------GAME OVER---------
+  describe "#game_over?" do
+    context "white queen knight captures black king" do
+      it "should end the game" do     
+        e8_king = King.new(:black, [1,5]) 
+        game.board.captured_pieces[:black] << e8_king
+        expect(game.game_over?).to be true
       end
     end
   end

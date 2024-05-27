@@ -263,7 +263,7 @@ This queen can be moved to: d2 d3 d4 d5 d6 d7 d8 e2 f3 g4 h5 e1 f1 g1 h1 c1 b1 a
 Enter one of the above squares to move: Confirm moving queen to a4? (Y/N): White queen moves from d1 to a4
 This queen can be moved to: e7 f6 g5 h4 d7 d6 d5 d4 d3 d2 d1 c7 b6 a5 c8 b8 a8
 Enter one of the above squares to move: Confirm moving queen to d7? (Y/N): Black queen moves from d8 to d7
- ___    ________________________________   ___ 
+Enter your choice:  ___    ________________________________   ___ 
 |   |  | a | b | c | d | e | f | g | h |  |   | 
  ̅ ̅ ̅     ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅ ̅    ̅ ̅ ̅  
  ___    ________________________________   ___ 
